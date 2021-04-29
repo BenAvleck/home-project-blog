@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO createUserDto) {
         User entityToCreate = UserMapper.INSTANCE.convert(createUserDto);
         entityToCreate.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
-        Role.RoleEnum role = Role.RoleEnum.BLOGGER;
-        Role roleEntity = roleRepo.findOneByRole("BLOGGER").get();
+        Role.NameEnum role = Role.NameEnum.BLOGGER;
+        Role roleEntity = roleRepo.findOneByName("BLOGGER").get();
         entityToCreate.setRole(roleEntity);
         userRepo.save(entityToCreate);
         return UserMapper.INSTANCE.convert(entityToCreate);
@@ -141,8 +141,8 @@ public class UserServiceImpl implements UserService {
         Role role = UserMapper.INSTANCE.convert(updateRoleDto);
         if (optionalUser.isPresent()) {
             User fromDB = optionalUser.get();
-            if (updateRoleDto.getRole() != null) {
-                fromDB.setRole(roleRepo.findOneByRole(role.getRole().toString()).orElseThrow(() -> new EntityNotFoundException("User with id:" + id + " is not found")));
+            if (updateRoleDto.getName() != null) {
+                fromDB.setRole(roleRepo.findOneByName(role.getName().toString()).orElseThrow(() -> new EntityNotFoundException("User with id:" + id + " is not found")));
             }
             userRepo.save(fromDB);
             return UserMapper.INSTANCE.convert(fromDB.getRole());

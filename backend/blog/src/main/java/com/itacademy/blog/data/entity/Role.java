@@ -1,9 +1,5 @@
 package com.itacademy.blog.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,9 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,9 +23,9 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private RoleEnum role;
+    private NameEnum name;
 
-    public enum RoleEnum {
+    public enum NameEnum {
 
         BLOGGER(Set.of()),
 
@@ -48,13 +41,11 @@ public class Role {
                 ,Permission.POST_DELETE
                 ,Permission.COMMENTS_UPDATE
                 ,Permission.COMMENTS_DELETE
-                ,Permission.ROLE_MANAGEMENT)),
-
-        EXPERT(Set.of());
+                ,Permission.ROLE_MANAGEMENT));
 
         private final Set<Permission> permissions;
 
-        RoleEnum(Set<Permission> permissions) {
+        NameEnum(Set<Permission> permissions) {
             this.permissions = permissions;
         }
 

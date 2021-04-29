@@ -24,7 +24,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-27T20:44:50.769328600+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T21:57:28.535795+03:00[Europe/Kiev]")
 @Validated
 @Api(value = "tags", description = "the tags API")
 public interface TagsApi {
@@ -116,6 +116,8 @@ public interface TagsApi {
      * @param id  (required)
      * @return The request was succesfully processed. (status code 204)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -126,6 +128,8 @@ public interface TagsApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The request was succesfully processed."),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @DeleteMapping(

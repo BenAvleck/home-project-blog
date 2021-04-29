@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * Tag
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-27T20:44:50.769328600+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T21:57:28.535795+03:00[Europe/Kiev]")
 public class Tag  implements Serializable {
   private static final long serialVersionUID = 1L;
 

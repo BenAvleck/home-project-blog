@@ -1,6 +1,5 @@
 package com.itacademy.blog.services.DTO;
 
-import com.itacademy.blog.data.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.time.OffsetDateTime;
 public class CommentDTO {
     private Long id;
 
-    private User user;
+    private UserDTO user;
 
     private String text;
 

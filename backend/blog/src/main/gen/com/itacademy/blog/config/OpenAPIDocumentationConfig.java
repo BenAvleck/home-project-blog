@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.ServletContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-27T20:44:50.769328600+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T21:57:28.535795+03:00[Europe/Kiev]")
 @Configuration
 @EnableSwagger2
 public class OpenAPIDocumentationConfig {
@@ -29,7 +29,7 @@ public class OpenAPIDocumentationConfig {
             .license("MIT")
             .licenseUrl("https://github.com/Home-Project-Engineering/home-project-blog/blob/main/LICENSE")
             .termsOfServiceUrl("")
-            .version("1.0.3")
+            .version("1.1.1")
             .contact(new Contact("","", ""))
             .build();
     }

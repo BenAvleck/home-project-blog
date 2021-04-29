@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-27T20:44:50.769328600+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T21:57:28.535795+03:00[Europe/Kiev]")
 @Validated
 @Api(value = "users", description = "the users API")
 public interface UsersApi {
@@ -63,7 +63,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -81,6 +81,7 @@ public interface UsersApi {
      * @param id  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -91,6 +92,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Comment.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
@@ -121,6 +123,7 @@ public interface UsersApi {
      * @param pageNum  (optional)
      * @param pageSize  (optional)
      * @return OK (status code 200)
+     *         or Unauthorized. (status code 401)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
     @ApiOperation(value = "Get comments by Current User", nickname = "getCommentsByCurrentUser", notes = "Uses query keys to retrieve a subset of existing comments assosiated with Current User.", response = Comment.class, responseContainer = "List", authorizations = {
@@ -129,6 +132,7 @@ public interface UsersApi {
          }, tags={ "Current User Comments", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Comment.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
         value = "/users/current/comments",
@@ -155,6 +159,7 @@ public interface UsersApi {
      *
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -165,6 +170,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = User.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
@@ -175,7 +181,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -193,6 +199,7 @@ public interface UsersApi {
      * @param id  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -203,6 +210,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Post.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
@@ -235,6 +243,7 @@ public interface UsersApi {
      * @param pageNum  (optional)
      * @param pageSize  (optional)
      * @return OK (status code 200)
+     *         or Unauthorized. (status code 401)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
     @ApiOperation(value = "Get posts by Current User", nickname = "getPostsByCurrentUser", notes = "Uses query keys to retrieve a subset of existing posts assosiated with Current User.", response = Post.class, responseContainer = "List", authorizations = {
@@ -243,6 +252,7 @@ public interface UsersApi {
          }, tags={ "Current User Posts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Post.class, responseContainer = "List"),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
         value = "/users/current/posts",
@@ -270,6 +280,8 @@ public interface UsersApi {
      * @param id  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -280,6 +292,8 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = User.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
@@ -290,7 +304,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -303,21 +317,25 @@ public interface UsersApi {
 
     /**
      * GET /users/{id}/role : Get User Role by ID
-     * Retrieves the role of an existing user associated with the specified id.
+     * Retrieves an existing User Role associated with the specified ID.
      *
      * @param id  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
-    @ApiOperation(value = "Get User Role by ID", nickname = "getUserRole", notes = "Retrieves the role of an existing user associated with the specified id.", response = Role.class, authorizations = {
+    @ApiOperation(value = "Get User Role by ID", nickname = "getUserRole", notes = "Retrieves an existing User Role associated with the specified ID.", response = Role.class, authorizations = {
         
         @Authorization(value = "basicAuth")
          }, tags={ "Users", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Role.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
@@ -328,7 +346,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"role\" : \"blogger\" }";
+                    String exampleString = "{ \"name\" : \"blogger\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -350,6 +368,8 @@ public interface UsersApi {
      * @param pageSize  (optional)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
     @ApiOperation(value = "Get users", nickname = "getUsers", notes = "Uses query keys to retrieve a subset of existing users.", response = User.class, responseContainer = "List", authorizations = {
@@ -359,6 +379,8 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = User.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @GetMapping(
         value = "/users",
@@ -368,7 +390,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -386,6 +408,7 @@ public interface UsersApi {
      * @param id  (required)
      * @return The request was succesfully processed. (status code 204)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -396,6 +419,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The request was succesfully processed."),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @DeleteMapping(
@@ -415,6 +439,7 @@ public interface UsersApi {
      * @param id  (required)
      * @return The request was succesfully processed. (status code 204)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -425,6 +450,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The request was succesfully processed."),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @DeleteMapping(
@@ -444,6 +470,8 @@ public interface UsersApi {
      * @param id  (required)
      * @return The request was succesfully processed. (status code 204)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -454,6 +482,8 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "The request was succesfully processed."),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @DeleteMapping(
@@ -474,6 +504,7 @@ public interface UsersApi {
      * @param comment  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -484,6 +515,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Comment.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @PutMapping(
@@ -513,6 +545,7 @@ public interface UsersApi {
      * @param user  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -523,6 +556,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = User.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @PutMapping(
@@ -534,7 +568,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -580,6 +614,7 @@ public interface UsersApi {
      * @param post  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -590,6 +625,7 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Post.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @PutMapping(
@@ -620,6 +656,8 @@ public interface UsersApi {
      * @param user  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
@@ -630,6 +668,8 @@ public interface UsersApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = User.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @PutMapping(
@@ -641,7 +681,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : { \"role\" : \"blogger\" }, \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
+                    String exampleString = "{ \"firstName\" : \"John\", \"lastName\" : \"Smith\", \"password\" : \"passworD321\", \"role\" : \"\", \"name\" : \"John78\", \"id\" : 0.8008281904610115, \"email\" : \"john.smith@example.com\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -654,22 +694,26 @@ public interface UsersApi {
 
     /**
      * PUT /users/{id}/role : Update User Role
-     * Updates User Role information that exists in the system by the specified ID.
+     * Updates Role on a User that exists in the system by the specified ID.
      *
      * @param id  (required)
      * @param role  (required)
      * @return OK (status code 200)
      *         or The payload contains an error. (status code 400)
+     *         or Unauthorized. (status code 401)
+     *         or Forbidden. (status code 403)
      *         or The specified resource was not found. (status code 404)
      *         or The unknown error appeard. Check your payload or contact support. (status code 200)
      */
-    @ApiOperation(value = "Update User Role", nickname = "updateUserRole", notes = "Updates User Role information that exists in the system by the specified ID.", response = Role.class, authorizations = {
+    @ApiOperation(value = "Update User Role", nickname = "updateUserRole", notes = "Updates Role on a User that exists in the system by the specified ID.", response = Role.class, authorizations = {
         
         @Authorization(value = "basicAuth")
          }, tags={ "Users", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "OK", response = Role.class),
         @ApiResponse(code = 400, message = "The payload contains an error.", response = Error.class),
+        @ApiResponse(code = 401, message = "Unauthorized.", response = Error.class),
+        @ApiResponse(code = 403, message = "Forbidden.", response = Error.class),
         @ApiResponse(code = 404, message = "The specified resource was not found.", response = Error.class),
         @ApiResponse(code = 200, message = "The unknown error appeard. Check your payload or contact support.", response = Error.class) })
     @PutMapping(
@@ -681,7 +725,7 @@ public interface UsersApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"role\" : \"blogger\" }";
+                    String exampleString = "{ \"name\" : \"blogger\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

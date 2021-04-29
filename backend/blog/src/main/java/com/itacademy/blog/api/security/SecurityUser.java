@@ -62,7 +62,7 @@ public class SecurityUser implements UserDetails {
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                user.getRole().getRole().getAuthorities()
+                user.getRole().getName().getAuthorities()
         );
     }
 }

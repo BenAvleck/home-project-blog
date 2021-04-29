@@ -1,8 +1,8 @@
 package com.itacademy.blog.api.mapper;
 
 import com.itacademy.blog.model.Role;
-import com.itacademy.blog.model.Role.RoleEnum;
 import com.itacademy.blog.model.User;
+import com.itacademy.blog.services.DTO.NameEnum;
 import com.itacademy.blog.services.DTO.RoleDTO;
 import com.itacademy.blog.services.DTO.UserDTO;
 import java.math.BigDecimal;
@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T19:51:11+0300",
+    date = "2021-04-29T21:58:17+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -44,7 +44,7 @@ public class UserMapperImpl implements UserMapper {
 
         RoleDTO roleDTO = new RoleDTO();
 
-        roleDTO.setRole( roleEnumToRoleEnum( value.getRole() ) );
+        roleDTO.setName( nameEnumToNameEnum( value.getName() ) );
 
         return roleDTO;
     }
@@ -57,7 +57,7 @@ public class UserMapperImpl implements UserMapper {
 
         Role role = new Role();
 
-        role.setRole( roleEnumToRoleEnum1( value.getRole() ) );
+        role.setName( nameEnumToNameEnum1( value.getName() ) );
 
         return role;
     }
@@ -117,70 +117,64 @@ public class UserMapperImpl implements UserMapper {
         return list;
     }
 
-    protected com.itacademy.blog.services.DTO.RoleDTO.RoleEnum roleEnumToRoleEnum(RoleEnum roleEnum) {
-        if ( roleEnum == null ) {
+    protected NameEnum nameEnumToNameEnum(com.itacademy.blog.model.Role.NameEnum nameEnum) {
+        if ( nameEnum == null ) {
             return null;
         }
 
-        com.itacademy.blog.services.DTO.RoleDTO.RoleEnum roleEnum1;
+        NameEnum nameEnum1;
 
-        switch ( roleEnum ) {
-            case BLOGGER: roleEnum1 = com.itacademy.blog.services.DTO.RoleDTO.RoleEnum.BLOGGER;
+        switch ( nameEnum ) {
+            case BLOGGER: nameEnum1 = NameEnum.BLOGGER;
             break;
-            case ADMIN: roleEnum1 = com.itacademy.blog.services.DTO.RoleDTO.RoleEnum.ADMIN;
+            case MODERATOR: nameEnum1 = NameEnum.MODERATOR;
             break;
-            case MODERATOR: roleEnum1 = com.itacademy.blog.services.DTO.RoleDTO.RoleEnum.MODERATOR;
+            case ADMIN: nameEnum1 = NameEnum.ADMIN;
             break;
-            case EXPERT: roleEnum1 = com.itacademy.blog.services.DTO.RoleDTO.RoleEnum.EXPERT;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + roleEnum );
+            default: throw new IllegalArgumentException( "Unexpected enum constant: " + nameEnum );
         }
 
-        return roleEnum1;
+        return nameEnum1;
     }
 
-    protected RoleEnum roleEnumToRoleEnum1(com.itacademy.blog.services.DTO.RoleDTO.RoleEnum roleEnum) {
-        if ( roleEnum == null ) {
+    protected com.itacademy.blog.model.Role.NameEnum nameEnumToNameEnum1(NameEnum nameEnum) {
+        if ( nameEnum == null ) {
             return null;
         }
 
-        RoleEnum roleEnum1;
+        com.itacademy.blog.model.Role.NameEnum nameEnum1;
 
-        switch ( roleEnum ) {
-            case BLOGGER: roleEnum1 = RoleEnum.BLOGGER;
+        switch ( nameEnum ) {
+            case BLOGGER: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.BLOGGER;
             break;
-            case MODERATOR: roleEnum1 = RoleEnum.MODERATOR;
+            case MODERATOR: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.MODERATOR;
             break;
-            case ADMIN: roleEnum1 = RoleEnum.ADMIN;
+            case ADMIN: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.ADMIN;
             break;
-            case EXPERT: roleEnum1 = RoleEnum.EXPERT;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + roleEnum );
+            default: throw new IllegalArgumentException( "Unexpected enum constant: " + nameEnum );
         }
 
-        return roleEnum1;
+        return nameEnum1;
     }
 
-    protected RoleEnum roleEnumToRoleEnum2(com.itacademy.blog.data.entity.Role.RoleEnum roleEnum) {
-        if ( roleEnum == null ) {
+    protected com.itacademy.blog.model.Role.NameEnum nameEnumToNameEnum2(com.itacademy.blog.data.entity.Role.NameEnum nameEnum) {
+        if ( nameEnum == null ) {
             return null;
         }
 
-        RoleEnum roleEnum1;
+        com.itacademy.blog.model.Role.NameEnum nameEnum1;
 
-        switch ( roleEnum ) {
-            case BLOGGER: roleEnum1 = RoleEnum.BLOGGER;
+        switch ( nameEnum ) {
+            case BLOGGER: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.BLOGGER;
             break;
-            case MODERATOR: roleEnum1 = RoleEnum.MODERATOR;
+            case MODERATOR: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.MODERATOR;
             break;
-            case ADMIN: roleEnum1 = RoleEnum.ADMIN;
+            case ADMIN: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.ADMIN;
             break;
-            case EXPERT: roleEnum1 = RoleEnum.EXPERT;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + roleEnum );
+            default: throw new IllegalArgumentException( "Unexpected enum constant: " + nameEnum );
         }
 
-        return roleEnum1;
+        return nameEnum1;
     }
 
     protected Role roleToRole(com.itacademy.blog.data.entity.Role role) {
@@ -190,7 +184,7 @@ public class UserMapperImpl implements UserMapper {
 
         Role role1 = new Role();
 
-        role1.setRole( roleEnumToRoleEnum2( role.getRole() ) );
+        role1.setName( nameEnumToNameEnum2( role.getName() ) );
 
         return role1;
     }

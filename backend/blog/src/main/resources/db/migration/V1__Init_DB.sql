@@ -50,7 +50,7 @@ create table users
 create table role
 (
     id   bigint not null,
-    role varchar(255),
+    name varchar(255),
     primary key (id)
 );
 

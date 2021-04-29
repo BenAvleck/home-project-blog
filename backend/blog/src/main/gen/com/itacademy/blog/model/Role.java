@@ -12,27 +12,26 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Role
+ * This is the level of User access to various functions.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-27T20:44:50.769328600+03:00[Europe/Kiev]")
+@ApiModel(description = "This is the level of User access to various functions.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T21:57:28.535795+03:00[Europe/Kiev]")
 public class Role  implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * User Role
+   * The name of the Role.
    */
-  public enum RoleEnum {
+  public enum NameEnum {
     BLOGGER("blogger"),
-    
-    ADMIN("admin"),
     
     MODERATOR("moderator"),
     
-    EXPERT("expert");
+    ADMIN("admin");
 
     private String value;
 
-    RoleEnum(String value) {
+    NameEnum(String value) {
       this.value = value;
     }
 
@@ -47,8 +46,8 @@ public class Role  implements Serializable {
     }
 
     @JsonCreator
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
+    public static NameEnum fromValue(String value) {
+      for (NameEnum b : NameEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -57,28 +56,27 @@ public class Role  implements Serializable {
     }
   }
 
-  @JsonProperty("role")
-  private RoleEnum role = RoleEnum.BLOGGER;
+  @JsonProperty("name")
+  private NameEnum name;
 
-  public Role role(RoleEnum role) {
-    this.role = role;
+  public Role name(NameEnum name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * User Role
-   * @return role
+   * The name of the Role.
+   * @return name
   */
-  @ApiModelProperty(required = true, value = "User Role")
-  @NotNull
+  @ApiModelProperty(value = "The name of the Role.")
 
 
-  public RoleEnum getRole() {
-    return role;
+  public NameEnum getName() {
+    return name;
   }
 
-  public void setRole(RoleEnum role) {
-    this.role = role;
+  public void setName(NameEnum name) {
+    this.name = name;
   }
 
 
@@ -91,12 +89,12 @@ public class Role  implements Serializable {
       return false;
     }
     Role role = (Role) o;
-    return Objects.equals(this.role, role.role);
+    return Objects.equals(this.name, role.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(role);
+    return Objects.hash(name);
   }
 
   @Override
@@ -104,7 +102,7 @@ public class Role  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class Role {\n");
     
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
