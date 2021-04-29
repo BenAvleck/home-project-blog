@@ -1,0 +1,2213 @@
+openapi: 3.0.3
+info:
+  description: |
+    Blog for the Home Project engineers
+  license:
+    name: MIT
+    url: https://github.com/Home-Project-Engineering/home-project-blog/blob/main/LICENSE
+  title: Home Project Blog Service
+  version: 1.1.1
+servers:
+- url: http://localhost:8080/api/1
+security:
+- basicAuth: []
+tags:
+- description: API for managing Current User.
+  name: Current User
+- description: API for managing Posts on Current User.
+  name: Current User Posts
+- description: API for managing Comments on Current User.
+  name: Current User Comments
+- description: API for managing Users.
+  name: Users
+- description: API for managing Posts.
+  name: Posts
+- description: API for managing Comments.
+  name: Comments
+- description: API for managing Tags.
+  name: Tags
+paths:
+  /users/current:
+    get:
+      description: Retrieves the current logged User.
+      operationId: getCurrentUser
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Return current User
+      tags:
+      - Current User
+      x-accepts: application/json
+    put:
+      description: Updates information on a Current User.
+      operationId: updateCurrentUser
+      requestBody:
+        $ref: '#/components/requestBodies/UserBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update Current User
+      tags:
+      - Current User
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/current/password:
+    put:
+      operationId: updateCurrentUserPassword
+      requestBody:
+        $ref: '#/components/requestBodies/PasswordBody'
+      responses:
+        "200":
+          description: The password was succesfully updated.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update password on a Current User
+      tags:
+      - Current User
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/current/posts:
+    get:
+      description: Uses query keys to retrieve a subset of existing posts assosiated
+        with Current User.
+      operationId: getPostsByCurrentUser
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: tag_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tag_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* or *title* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: -id
+          enum:
+          - id
+          - -id
+          - title
+          - -title
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Post'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get posts by Current User
+      tags:
+      - Current User Posts
+      x-accepts: application/json
+  /users/current/posts/{id}:
+    delete:
+      description: Deletes a Post associated with a specified ID and Current User.
+      operationId: removePostByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove Post by Current User
+      tags:
+      - Current User Posts
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing Post associated with the specified ID and
+        Current User.
+      operationId: getPostByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get Post by ID and Current User
+      tags:
+      - Current User Posts
+      x-accepts: application/json
+    put:
+      description: Updates information on a Post that exists in the system by the
+        specified ID and Current User.
+      operationId: updatePostByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/PostBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update Post by Current User
+      tags:
+      - Current User Posts
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/current/comments:
+    get:
+      description: Uses query keys to retrieve a subset of existing comments assosiated
+        with Current User.
+      operationId: getCommentsByCurrentUser
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: -id
+          enum:
+          - id
+          - -id
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Comment'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get comments by Current User
+      tags:
+      - Current User Comments
+      x-accepts: application/json
+  /users/current/comments/{id}:
+    delete:
+      description: Deletes a Comment associated with a specified ID and Current User.
+      operationId: removeCommentByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove Comment by Current User
+      tags:
+      - Current User Comments
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing Comment associated with the specified ID
+        and Current User.
+      operationId: getCommentByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get Comment by ID and Current User
+      tags:
+      - Current User Comments
+      x-accepts: application/json
+    put:
+      description: Updates information on a Comment that exists in the system by the
+        specified ID and Current User.
+      operationId: updateCommentByCurrentUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CommentBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update Comment by Current User
+      tags:
+      - Current User Comments
+      x-contentType: application/json
+      x-accepts: application/json
+  /users:
+    get:
+      description: Uses query keys to retrieve a subset of existing users.
+      operationId: getUsers
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* or *name* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: -id
+          enum:
+          - id
+          - -id
+          - name
+          - -name
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get users
+      tags:
+      - Users
+      x-accepts: application/json
+    post:
+      description: Create a new User.
+      operationId: createUser
+      requestBody:
+        $ref: '#/components/requestBodies/UserBody'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Create User
+      tags:
+      - Users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{id}:
+    delete:
+      description: Deletes a User associated with a specified ID.
+      operationId: removeUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove User
+      tags:
+      - Users
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing User associated with the specified ID.
+      operationId: getUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get User by ID
+      tags:
+      - Users
+      x-accepts: application/json
+    put:
+      description: Updates information on a User that exists in the system by the
+        specified ID.
+      operationId: updateUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/UserBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update User
+      tags:
+      - Users
+      x-contentType: application/json
+      x-accepts: application/json
+  /users/{id}/role:
+    get:
+      description: Retrieves an existing User Role associated with the specified ID.
+      operationId: getUserRole
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get User Role by ID
+      tags:
+      - Users
+      x-accepts: application/json
+    put:
+      description: Updates Role on a User that exists in the system by the specified
+        ID.
+      operationId: updateUserRole
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/RoleBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update User Role
+      tags:
+      - Users
+      x-contentType: application/json
+      x-accepts: application/json
+  /posts:
+    get:
+      description: Uses query keys to retrieve a subset of existing posts.
+      operationId: getPosts
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: tag_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: tag_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* or *title* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: -id
+          enum:
+          - id
+          - -id
+          - title
+          - -title
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Post'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get posts
+      tags:
+      - Posts
+      x-accepts: application/json
+    post:
+      description: Create a new Post.
+      operationId: createPost
+      requestBody:
+        $ref: '#/components/requestBodies/PostBody'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Create Post
+      tags:
+      - Posts
+      x-contentType: application/json
+      x-accepts: application/json
+  /posts/{id}:
+    delete:
+      description: Deletes a Post associated with a specified ID.
+      operationId: removePost
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove Post
+      tags:
+      - Posts
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing Post associated with the specified ID.
+      operationId: getPost
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get Post by ID
+      tags:
+      - Posts
+      x-accepts: application/json
+    put:
+      description: Updates information on a Post that exists in the system by the
+        specified ID.
+      operationId: updatePost
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/PostBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update Post
+      tags:
+      - Posts
+      x-contentType: application/json
+      x-accepts: application/json
+  /posts/{post_id}/comments:
+    get:
+      description: Uses query keys to retrieve a subset of existing comments.
+      operationId: getComments
+      parameters:
+      - explode: false
+        in: path
+        name: post_id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: user_name
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: -id
+          enum:
+          - id
+          - -id
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Comment'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get comments
+      tags:
+      - Comments
+      x-accepts: application/json
+    post:
+      description: Create a new Comment.
+      operationId: createComment
+      parameters:
+      - explode: false
+        in: path
+        name: post_id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CommentBody'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Create Comment
+      tags:
+      - Comments
+      x-contentType: application/json
+      x-accepts: application/json
+  /posts/{post_id}/comments/{id}:
+    delete:
+      description: Deletes a Comment associated with a specified ID.
+      operationId: removeComment
+      parameters:
+      - explode: false
+        in: path
+        name: post_id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove Comment
+      tags:
+      - Comments
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing Comment associated with the specified ID.
+      operationId: getComment
+      parameters:
+      - explode: false
+        in: path
+        name: post_id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get Comment by ID.
+      tags:
+      - Comments
+      x-accepts: application/json
+    put:
+      description: Updates information on a Comment that exists in the system by the
+        specified ID and post ID.
+      operationId: updateComment
+      parameters:
+      - explode: false
+        in: path
+        name: post_id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      requestBody:
+        $ref: '#/components/requestBodies/CommentBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Update Comment
+      tags:
+      - Comments
+      x-contentType: application/json
+      x-accepts: application/json
+  /tags:
+    get:
+      description: Uses query keys to retrieve a subset of existing tags.
+      operationId: getTags
+      parameters:
+      - explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          format: int64
+          type: number
+        style: form
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          In order to execute *asc*, you need to specify in the search *id* or *name* parameter.
+          In order to complete the *desc* sorting must be specified in the query parameter *-id*
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: name
+          enum:
+          - id
+          - -id
+          - name
+          - -name
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page_num
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page_size
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Tag'
+                type: array
+          description: OK
+          headers:
+            X-Total-Count:
+              $ref: '#/components/headers/X-Total-Count'
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get tags
+      tags:
+      - Tags
+      x-accepts: application/json
+  /tags/{id}:
+    delete:
+      description: Deletes a Tag associated with a specified ID.
+      operationId: removeTag
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "204":
+          description: The request was succesfully processed.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Remove Tag
+      tags:
+      - Tags
+      x-accepts: application/json
+    get:
+      description: Retrieves an existing Tag associated with the specified ID.
+      operationId: getTag
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: number
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The payload contains an error.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The specified resource was not found.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: The unknown error appeard. Check your payload or contact support.
+      summary: Get Tag by ID
+      tags:
+      - Tags
+      x-accepts: application/json
+components:
+  headers:
+    X-Total-Count:
+      description: The total results for the particular query.
+      explode: false
+      schema:
+        format: int64
+        type: number
+      style: simple
+  parameters:
+    p_id:
+      explode: false
+      in: path
+      name: id
+      required: true
+      schema:
+        format: int64
+        type: number
+      style: simple
+    p_post_id:
+      explode: false
+      in: path
+      name: post_id
+      required: true
+      schema:
+        format: int64
+        type: number
+      style: simple
+    page_num:
+      explode: true
+      in: query
+      name: page_num
+      required: false
+      schema:
+        type: integer
+      style: form
+    page_size:
+      explode: true
+      in: query
+      name: page_size
+      required: false
+      schema:
+        type: integer
+      style: form
+    id:
+      explode: true
+      in: query
+      name: id
+      required: false
+      schema:
+        format: int64
+        type: number
+      style: form
+    name:
+      explode: true
+      in: query
+      name: name
+      required: false
+      schema:
+        type: string
+      style: form
+    user_name:
+      explode: true
+      in: query
+      name: user_name
+      required: false
+      schema:
+        type: string
+      style: form
+    tag_name:
+      explode: true
+      in: query
+      name: tag_name
+      required: false
+      schema:
+        type: string
+      style: form
+    user_id:
+      explode: true
+      in: query
+      name: user_id
+      required: false
+      schema:
+        type: string
+      style: form
+    tag_id:
+      explode: true
+      in: query
+      name: tag_id
+      required: false
+      schema:
+        type: string
+      style: form
+    tags_sort:
+      description: |
+        In order to execute *asc*, you need to specify in the search *id* or *name* parameter.
+        In order to complete the *desc* sorting must be specified in the query parameter *-id*
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        default: name
+        enum:
+        - id
+        - -id
+        - name
+        - -name
+        type: string
+      style: form
+    users_sort:
+      description: |
+        In order to execute *asc*, you need to specify in the search *id* or *name* parameter.
+        In order to complete the *desc* sorting must be specified in the query parameter *-id*
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        default: -id
+        enum:
+        - id
+        - -id
+        - name
+        - -name
+        type: string
+      style: form
+    posts_sort:
+      description: |
+        In order to execute *asc*, you need to specify in the search *id* or *title* parameter.
+        In order to complete the *desc* sorting must be specified in the query parameter *-id*
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        default: -id
+        enum:
+        - id
+        - -id
+        - title
+        - -title
+        type: string
+      style: form
+    comments_sort:
+      description: |
+        In order to execute *asc*, you need to specify in the search *id* parameter.
+        In order to complete the *desc* sorting must be specified in the query parameter *-id*
+      explode: true
+      in: query
+      name: sort
+      required: false
+      schema:
+        default: -id
+        enum:
+        - id
+        - -id
+        type: string
+      style: form
+  requestBodies:
+    CommentBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Comment'
+      required: true
+    PostBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Post'
+      required: true
+    UserBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+      required: true
+    RoleBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Role'
+      required: true
+    PasswordBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Password'
+      required: true
+  responses:
+    PasswordUpdatedResponse:
+      description: The password was succesfully updated.
+    NoContentResponse:
+      description: The request was succesfully processed.
+    TagResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Tag'
+      description: OK
+    CommentResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Comment'
+      description: OK
+    PostResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Post'
+      description: OK
+    UserResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+      description: OK
+    RoleResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Role'
+      description: OK
+    CommentsResponse:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/Comment'
+            type: array
+      description: OK
+      headers:
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+    UsersResponse:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/User'
+            type: array
+      description: OK
+      headers:
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+    PostsResponse:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/Post'
+            type: array
+      description: OK
+      headers:
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+    TagsResponse:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/Tag'
+            type: array
+      description: OK
+      headers:
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+    ValidationError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The payload contains an error.
+    NotFoundError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The specified resource was not found.
+    UnauthorizedError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Unauthorized.
+    ForbiddenError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: Forbidden.
+    UnknownError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+      description: The unknown error appeard. Check your payload or contact support.
+  schemas:
+    User:
+      description: A representation of User entity.
+      example:
+        firstName: John
+        lastName: Smith
+        password: passworD321
+        role: ""
+        name: John78
+        id: 0.8008281904610115
+        email: john.smith@example.com
+      properties:
+        id:
+          description: The ID of the User.
+          format: int64
+          readOnly: true
+          type: number
+        name:
+          description: The name of the User.
+          example: John78
+          minLength: 4
+          type: string
+        firstName:
+          description: The first name of the User.
+          example: John
+          minLength: 1
+          type: string
+        lastName:
+          description: The last name of the User.
+          example: Smith
+          minLength: 1
+          type: string
+        email:
+          description: The email of the User.
+          example: john.smith@example.com
+          format: email
+          type: string
+        password:
+          description: The password of the User. MUST contain a mix of upper and lower
+            case letters, as well as digits.
+          example: passworD321
+          format: password
+          minLength: 8
+          pattern: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$
+          type: string
+        role:
+          allOf:
+          - $ref: '#/components/schemas/Role'
+          readOnly: true
+      required:
+      - email
+      - name
+      type: object
+    Role:
+      description: This is the level of User access to various functions.
+      example:
+        name: blogger
+      properties:
+        name:
+          description: The name of the Role.
+          enum:
+          - blogger
+          - moderator
+          - admin
+          type: string
+      required:
+      - role
+      type: object
+    Post:
+      description: A representation of Post entity.
+      example:
+        previewAttachment: previewAttachment
+        id: 0.8008281904610115
+        text: text
+        updatedOn: 2017-07-21T17:32:28Z
+        title: title
+        createdOn: 2017-07-21T17:32:28Z
+        user: ""
+        tags:
+        - name: Java8
+          id: 6.027456183070403
+        - name: Java8
+          id: 6.027456183070403
+      properties:
+        id:
+          description: The ID of the Post.
+          format: int64
+          readOnly: true
+          type: number
+        tags:
+          description: The subset of assosiated tags to the Post.
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+        createdOn:
+          description: The Post creation date.
+          example: 2017-07-21T17:32:28Z
+          format: date-time
+          readOnly: true
+          type: string
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          description: The creator of the Post.
+          readOnly: true
+        text:
+          description: The content of the Post.
+          type: string
+        title:
+          description: The summary of the Post.
+          type: string
+        previewAttachment:
+          description: URL of the resource that will be used as an preview of the
+            Post.
+          type: string
+        updatedOn:
+          description: The Post update date.
+          example: 2017-07-21T17:32:28Z
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - body
+      - previewAttachment
+      - title
+      type: object
+    Comment:
+      description: A representation of Comment entity.
+      example:
+        id: 0.8008281904610115
+        text: text
+        updatedOn: 2017-07-21T17:32:28Z
+        user: ""
+        createdOn: 2017-07-21T17:32:28Z
+      properties:
+        id:
+          description: The ID of the Comment.
+          format: int64
+          readOnly: true
+          type: number
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          description: The creator of the Comment.
+          readOnly: true
+        text:
+          description: The content of the Comment.
+          type: string
+        createdOn:
+          description: The Comment creation date.
+          example: 2017-07-21T17:32:28Z
+          format: date-time
+          readOnly: true
+          type: string
+        updatedOn:
+          description: The Comment update date.
+          example: 2017-07-21T17:32:28Z
+          format: date-time
+          readOnly: true
+          type: string
+      required:
+      - text
+    Tag:
+      example:
+        name: Java8
+        id: 6.027456183070403
+      properties:
+        id:
+          description: The ID of the Tag.
+          format: int64
+          readOnly: true
+          type: number
+        name:
+          description: The name of the Tag.
+          example: Java8
+          type: string
+      required:
+      - name
+      type: object
+    Error:
+      description: Representation of an Error that can appear using the application.
+      properties:
+        code:
+          description: The code of an error that describes the Error.
+          readOnly: true
+          type: string
+        message:
+          description: The message of an error that describes the Error.
+          readOnly: true
+          type: string
+      type: object
+    Password:
+      example:
+        oldPassword: oldPassword
+        newPassword: newPassword
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      required:
+      - newPassword
+      - oldPassword
+      type: object
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+

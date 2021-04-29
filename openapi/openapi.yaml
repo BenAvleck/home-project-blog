@@ -216,7 +216,7 @@ paths:
         $ref: '#/components/requestBodies/CommentBody'
       responses:
         200:
-          $ref: '#/components/responses/CommentsResponse'
+          $ref: '#/components/responses/CommentResponse'
         400:
           $ref: '#/components/responses/ValidationError'
         401:
@@ -357,7 +357,7 @@ paths:
       operationId: getUserRole
       responses:
         200:
-          $ref: '#/components/responses/UserRoleResponse'
+          $ref: '#/components/responses/RoleResponse'
         400:
           $ref: '#/components/responses/ValidationError'
         401:
@@ -816,6 +816,16 @@ components:
           description: The message of an error that describes the Error.
           type: string
           readOnly: true
+    Password:
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
 
   responses:
     PasswordUpdatedResponse:
