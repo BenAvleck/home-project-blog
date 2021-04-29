@@ -1,7 +1,6 @@
 package com.itacademy.blog.api.mapper;
 
 import com.itacademy.blog.data.entity.Tag;
-import com.itacademy.blog.data.entity.Tag.TagBuilder;
 import com.itacademy.blog.model.Post;
 import com.itacademy.blog.model.Role;
 import com.itacademy.blog.model.User;
@@ -16,7 +15,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T21:58:17+0300",
+    date = "2021-04-29T22:19:49+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class PostMapperImpl implements PostMapper {
@@ -134,14 +133,14 @@ public class PostMapperImpl implements PostMapper {
             return null;
         }
 
-        TagBuilder tag1 = Tag.builder();
+        Tag tag1 = new Tag();
 
         if ( tag.getId() != null ) {
-            tag1.id( tag.getId().longValue() );
+            tag1.setId( tag.getId().longValue() );
         }
-        tag1.name( tag.getName() );
+        tag1.setName( tag.getName() );
 
-        return tag1.build();
+        return tag1;
     }
 
     protected List<Tag> tagListToTagList(List<com.itacademy.blog.model.Tag> list) {

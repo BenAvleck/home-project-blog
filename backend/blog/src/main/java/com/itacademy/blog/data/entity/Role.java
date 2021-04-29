@@ -23,7 +23,7 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private NameEnum name;
+    private NameEnum name = NameEnum.BLOGGER;
 
     public enum NameEnum {
 

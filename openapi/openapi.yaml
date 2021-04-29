@@ -712,7 +712,7 @@ components:
             - blogger
             - moderator
             - admin
-
+          default: blogger
     Post:
       description: A representation of Post entity.
       type: object

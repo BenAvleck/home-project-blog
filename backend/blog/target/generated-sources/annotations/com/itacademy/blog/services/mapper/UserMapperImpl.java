@@ -2,7 +2,6 @@ package com.itacademy.blog.services.mapper;
 
 import com.itacademy.blog.data.entity.Role;
 import com.itacademy.blog.data.entity.User;
-import com.itacademy.blog.data.entity.User.UserBuilder;
 import com.itacademy.blog.services.DTO.NameEnum;
 import com.itacademy.blog.services.DTO.RoleDTO;
 import com.itacademy.blog.services.DTO.UserDTO;
@@ -13,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T21:58:16+0300",
+    date = "2021-04-29T22:19:49+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -46,19 +45,19 @@ public class UserMapperImpl implements UserMapper {
             return null;
         }
 
-        UserBuilder user = User.builder();
+        User user = new User();
 
         if ( userDTO.getId() != null ) {
-            user.id( userDTO.getId().longValue() );
+            user.setId( userDTO.getId().longValue() );
         }
-        user.name( userDTO.getName() );
-        user.firstName( userDTO.getFirstName() );
-        user.lastName( userDTO.getLastName() );
-        user.email( userDTO.getEmail() );
-        user.password( userDTO.getPassword() );
-        user.role( convert( userDTO.getRole() ) );
+        user.setName( userDTO.getName() );
+        user.setFirstName( userDTO.getFirstName() );
+        user.setLastName( userDTO.getLastName() );
+        user.setEmail( userDTO.getEmail() );
+        user.setPassword( userDTO.getPassword() );
+        user.setRole( convert( userDTO.getRole() ) );
 
-        return user.build();
+        return user;
     }
 
     @Override

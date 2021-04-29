@@ -1,10 +1,8 @@
 package com.itacademy.blog.services.mapper;
 
 import com.itacademy.blog.data.entity.Comment;
-import com.itacademy.blog.data.entity.Comment.CommentBuilder;
 import com.itacademy.blog.data.entity.Role;
 import com.itacademy.blog.data.entity.User;
-import com.itacademy.blog.data.entity.User.UserBuilder;
 import com.itacademy.blog.services.DTO.CommentDTO;
 import com.itacademy.blog.services.DTO.NameEnum;
 import com.itacademy.blog.services.DTO.RoleDTO;
@@ -16,7 +14,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T21:58:17+0300",
+    date = "2021-04-29T22:19:49+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class CommentMapperImpl implements CommentMapper {
@@ -44,15 +42,15 @@ public class CommentMapperImpl implements CommentMapper {
             return null;
         }
 
-        CommentBuilder comment = Comment.builder();
+        Comment comment = new Comment();
 
-        comment.user( userDTOToUser( commentDTO.getUser() ) );
-        comment.id( commentDTO.getId() );
-        comment.text( commentDTO.getText() );
-        comment.createdOn( commentDTO.getCreatedOn() );
-        comment.updatedOn( commentDTO.getUpdatedOn() );
+        comment.setUser( userDTOToUser( commentDTO.getUser() ) );
+        comment.setId( commentDTO.getId() );
+        comment.setText( commentDTO.getText() );
+        comment.setCreatedOn( commentDTO.getCreatedOn() );
+        comment.setUpdatedOn( commentDTO.getUpdatedOn() );
 
-        return comment.build();
+        return comment;
     }
 
     @Override
@@ -158,18 +156,18 @@ public class CommentMapperImpl implements CommentMapper {
             return null;
         }
 
-        UserBuilder user = User.builder();
+        User user = new User();
 
         if ( userDTO.getId() != null ) {
-            user.id( userDTO.getId().longValue() );
+            user.setId( userDTO.getId().longValue() );
         }
-        user.name( userDTO.getName() );
-        user.firstName( userDTO.getFirstName() );
-        user.lastName( userDTO.getLastName() );
-        user.email( userDTO.getEmail() );
-        user.password( userDTO.getPassword() );
-        user.role( roleDTOToRole( userDTO.getRole() ) );
+        user.setName( userDTO.getName() );
+        user.setFirstName( userDTO.getFirstName() );
+        user.setLastName( userDTO.getLastName() );
+        user.setEmail( userDTO.getEmail() );
+        user.setPassword( userDTO.getPassword() );
+        user.setRole( roleDTOToRole( userDTO.getRole() ) );
 
-        return user.build();
+        return user;
     }
 }

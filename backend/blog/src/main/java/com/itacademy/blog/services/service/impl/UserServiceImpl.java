@@ -38,9 +38,12 @@ public class UserServiceImpl implements UserService {
     public UserDTO createUser(UserDTO createUserDto) {
         User entityToCreate = UserMapper.INSTANCE.convert(createUserDto);
         entityToCreate.setPassword(passwordEncoder.encode(createUserDto.getPassword()));
-        Role.NameEnum role = Role.NameEnum.BLOGGER;
-        Role roleEntity = roleRepo.findOneByName("BLOGGER").get();
-        entityToCreate.setRole(roleEntity);
+        Optional<Role> roleEntity = roleRepo.findOneByName("BLOGGER");
+        if(roleEntity.isPresent()) {
+            entityToCreate.setRole(roleEntity.get());
+        }else {
+            entityToCreate.setRole(new Role());
+        }
         userRepo.save(entityToCreate);
         return UserMapper.INSTANCE.convert(entityToCreate);
     }
