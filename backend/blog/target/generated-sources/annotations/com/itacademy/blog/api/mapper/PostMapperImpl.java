@@ -1,12 +1,9 @@
 package com.itacademy.blog.api.mapper;
 
 import com.itacademy.blog.data.entity.Tag;
+import com.itacademy.blog.model.Author;
 import com.itacademy.blog.model.Post;
-import com.itacademy.blog.model.Role;
-import com.itacademy.blog.model.User;
-import com.itacademy.blog.services.DTO.NameEnum;
 import com.itacademy.blog.services.DTO.PostDTO;
-import com.itacademy.blog.services.DTO.RoleDTO;
 import com.itacademy.blog.services.DTO.UserDTO;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-04-29T22:19:49+0300",
+    date = "2021-04-30T22:35:21+0300",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 15.0.2 (Oracle Corporation)"
 )
 public class PostMapperImpl implements PostMapper {
@@ -28,7 +25,7 @@ public class PostMapperImpl implements PostMapper {
 
         PostDTO postDTO = new PostDTO();
 
-        postDTO.setUser( userToUserDTO( post.getUser() ) );
+        postDTO.setUser( authorToUserDTO( post.getUser() ) );
         if ( post.getId() != null ) {
             postDTO.setId( post.getId().longValue() );
         }
@@ -43,6 +40,21 @@ public class PostMapperImpl implements PostMapper {
     }
 
     @Override
+    public Author convert(UserDTO user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        Author author = new Author();
+
+        author.setName( user.getName() );
+        author.setFirstName( user.getFirstName() );
+        author.setLastName( user.getLastName() );
+
+        return author;
+    }
+
+    @Override
     public Post convert(PostDTO postDTO) {
         if ( postDTO == null ) {
             return null;
@@ -50,7 +62,7 @@ public class PostMapperImpl implements PostMapper {
 
         Post post = new Post();
 
-        post.setUser( userDTOToUser( postDTO.getUser() ) );
+        post.setUser( convert( postDTO.getUser() ) );
         if ( postDTO.getId() != null ) {
             post.setId( BigDecimal.valueOf( postDTO.getId() ) );
         }
@@ -78,52 +90,16 @@ public class PostMapperImpl implements PostMapper {
         return list;
     }
 
-    protected NameEnum nameEnumToNameEnum(com.itacademy.blog.model.Role.NameEnum nameEnum) {
-        if ( nameEnum == null ) {
-            return null;
-        }
-
-        NameEnum nameEnum1;
-
-        switch ( nameEnum ) {
-            case BLOGGER: nameEnum1 = NameEnum.BLOGGER;
-            break;
-            case MODERATOR: nameEnum1 = NameEnum.MODERATOR;
-            break;
-            case ADMIN: nameEnum1 = NameEnum.ADMIN;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + nameEnum );
-        }
-
-        return nameEnum1;
-    }
-
-    protected RoleDTO roleToRoleDTO(Role role) {
-        if ( role == null ) {
-            return null;
-        }
-
-        RoleDTO roleDTO = new RoleDTO();
-
-        roleDTO.setName( nameEnumToNameEnum( role.getName() ) );
-
-        return roleDTO;
-    }
-
-    protected UserDTO userToUserDTO(User user) {
-        if ( user == null ) {
+    protected UserDTO authorToUserDTO(Author author) {
+        if ( author == null ) {
             return null;
         }
 
         UserDTO userDTO = new UserDTO();
 
-        userDTO.setId( user.getId() );
-        userDTO.setName( user.getName() );
-        userDTO.setFirstName( user.getFirstName() );
-        userDTO.setLastName( user.getLastName() );
-        userDTO.setEmail( user.getEmail() );
-        userDTO.setPassword( user.getPassword() );
-        userDTO.setRole( roleToRoleDTO( user.getRole() ) );
+        userDTO.setName( author.getName() );
+        userDTO.setFirstName( author.getFirstName() );
+        userDTO.setLastName( author.getLastName() );
 
         return userDTO;
     }
@@ -154,57 +130,6 @@ public class PostMapperImpl implements PostMapper {
         }
 
         return list1;
-    }
-
-    protected com.itacademy.blog.model.Role.NameEnum nameEnumToNameEnum1(NameEnum nameEnum) {
-        if ( nameEnum == null ) {
-            return null;
-        }
-
-        com.itacademy.blog.model.Role.NameEnum nameEnum1;
-
-        switch ( nameEnum ) {
-            case BLOGGER: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.BLOGGER;
-            break;
-            case MODERATOR: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.MODERATOR;
-            break;
-            case ADMIN: nameEnum1 = com.itacademy.blog.model.Role.NameEnum.ADMIN;
-            break;
-            default: throw new IllegalArgumentException( "Unexpected enum constant: " + nameEnum );
-        }
-
-        return nameEnum1;
-    }
-
-    protected Role roleDTOToRole(RoleDTO roleDTO) {
-        if ( roleDTO == null ) {
-            return null;
-        }
-
-        Role role = new Role();
-
-        role.setName( nameEnumToNameEnum1( roleDTO.getName() ) );
-
-        return role;
-    }
-
-    protected User userDTOToUser(UserDTO userDTO) {
-        if ( userDTO == null ) {
-            return null;
-        }
-
-        User user = new User();
-
-        user.setId( userDTO.getId() );
-        user.setName( userDTO.getName() );
-        user.setFirstName( userDTO.getFirstName() );
-        user.setLastName( userDTO.getLastName() );
-        user.setEmail( userDTO.getEmail() );
-        user.setRole( roleDTOToRole( userDTO.getRole() ) );
-
-        user.setPassword( "********" );
-
-        return user;
     }
 
     protected com.itacademy.blog.model.Tag tagToTag1(Tag tag) {

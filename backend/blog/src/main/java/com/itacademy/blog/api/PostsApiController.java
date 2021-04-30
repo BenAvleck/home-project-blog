@@ -57,9 +57,7 @@ public class PostsApiController implements PostsApi {
     public ResponseEntity<Post> createPost(@Valid Post post) {
         PostDTO createPostDto = PostMapper.INSTANCE.convert(post);
         PostDTO readPostDto = postService.createPost(createPostDto);
-
         Post returnPost = PostMapper.INSTANCE.convert(readPostDto);
-        returnPost.setUser(UserMapper.INSTANCE.convert(readPostDto.getUser()));
         return new ResponseEntity<Post>(returnPost, HttpStatus.CREATED);
     }
 
@@ -77,7 +75,7 @@ public class PostsApiController implements PostsApi {
     }
 
     @Override
-    public ResponseEntity<List<Comment>> getComments(BigDecimal postId, @Valid BigDecimal id, @Valid String userName, @Valid String userId, @Valid String sort, @Valid Integer pageNum, @Valid Integer pageSize) {
+    public ResponseEntity<List<Comment>> getComments(BigDecimal postId, @Valid BigDecimal id, @Valid String authorName, @Valid String sort, @Valid Integer pageNum, @Valid Integer pageSize) {
         Map<String, String> filterMap = new HashMap<>();
 
         if (id != null) {
@@ -87,8 +85,7 @@ public class PostsApiController implements PostsApi {
         }
 
         filterMap.put("post.id", postId.toString());
-        filterMap.put("user.name", userName);
-        filterMap.put("user.id", userId);
+        filterMap.put("author.name", authorName);
 
 
         List<Comment> comments = commentService.findComments(Optional.ofNullable(pageNum).orElse(1)
@@ -100,7 +97,7 @@ public class PostsApiController implements PostsApi {
     }
 
     @Override
-    public ResponseEntity<List<Post>> getPosts(@Valid BigDecimal id, @Valid String tagId, @Valid String tagName, @Valid String userId, @Valid String sort, @Valid Integer pageNum, @Valid Integer pageSize) {
+    public ResponseEntity<List<Post>> getPosts(@Valid BigDecimal id, @Valid String tagId, @Valid String tagName, @Valid String authorName, @Valid String sort, @Valid Integer pageNum, @Valid Integer pageSize) {
         Map<String, String> filterMap = new HashMap<>();
 
         if (id != null) {
@@ -113,7 +110,7 @@ public class PostsApiController implements PostsApi {
         //Problem with handling tags with spaces in their names
         //Have not started working on the solution yet
         filterMap.put("tags.name", tagName);
-        filterMap.put("user.id", userId);
+        filterMap.put("user.id", authorName);
 
 
         List<Post> posts = postService.findPosts(Optional.ofNullable(pageNum).orElse(1)
