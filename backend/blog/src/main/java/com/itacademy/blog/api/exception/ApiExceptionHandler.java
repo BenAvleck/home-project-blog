@@ -25,7 +25,7 @@ public class ApiExceptionHandler {
         error.setCode("400");
         StringBuilder exception = new StringBuilder();
         for (FieldError fieldError  : e.getBindingResult().getFieldErrors()) {
-            exception.append("ERROR: ").append(fieldError.getDefaultMessage()).append(";    \n");
+            exception.append("ERROR: ").append(fieldError.getDefaultMessage()).append(".");
         }
         error.setMessage(exception.toString());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);

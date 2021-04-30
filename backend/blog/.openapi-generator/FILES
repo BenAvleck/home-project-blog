@@ -6,6 +6,7 @@ src/main/gen/com/itacademy/blog/api/PostsApi.java
 src/main/gen/com/itacademy/blog/api/TagsApi.java
 src/main/gen/com/itacademy/blog/api/UsersApi.java
 src/main/gen/com/itacademy/blog/config/OpenAPIDocumentationConfig.java
+src/main/gen/com/itacademy/blog/model/Author.java
 src/main/gen/com/itacademy/blog/model/Comment.java
 src/main/gen/com/itacademy/blog/model/Error.java
 src/main/gen/com/itacademy/blog/model/Password.java

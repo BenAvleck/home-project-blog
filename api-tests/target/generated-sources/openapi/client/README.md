@@ -4,7 +4,7 @@ Home Project Blog Service
 
 - API version: 1.1.1
 
-- Build date: 2021-04-29T19:49:21.281035700+03:00[Europe/Kiev]
+- Build date: 2021-04-30T09:27:34.660264200+03:00[Europe/Kiev]
 
 Blog for the Home Project engineers
 
@@ -69,6 +69,31 @@ Then manually install the following JARs:
 - `target/home-project-blog-api-client-0.1.0-SNAPSHOT.jar`
 - `target/lib/*.jar`
 
+## Usage
+
+To add a HTTP proxy for the API client, use `ClientConfig`:
+```java
+
+import org.glassfish.jersey.apache.connector.ApacheConnectorProvider;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.ClientProperties;
+import com.softserveinc.ita.homeproject.blog.*;
+import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
+
+...
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+ClientConfig clientConfig = defaultClient.getClientConfig();
+clientConfig.connectorProvider(new ApacheConnectorProvider());
+clientConfig.property(ClientProperties.PROXY_URI, "http://proxy_url_here");
+clientConfig.property(ClientProperties.PROXY_USERNAME, "proxy_username");
+clientConfig.property(ClientProperties.PROXY_PASSWORD, "proxy_password");
+defaultClient.setClientConfig(clientConfig);
+
+CommentsApi apiInstance = new CommentsApi(defaultClient);
+
+```
+
 ## Getting Started
 
 Please follow the [installation](#installation) instruction and execute the following Java code:
@@ -92,7 +117,7 @@ public class CommentsApiExample {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
         Comment comment = new Comment(); // Comment | 
         try {
             Comment result = apiInstance.createComment(postId, comment);

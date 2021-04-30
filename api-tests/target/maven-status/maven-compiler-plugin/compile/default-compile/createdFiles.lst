@@ -1,6 +1,8 @@
+com\softserveinc\ita\homeproject\blog\JavaTimeFormatter.class
 com\softserveinc\ita\homeproject\blog\Configuration.class
 com\softserveinc\ita\homeproject\blog\client\api\UsersApi$3.class
 com\softserveinc\ita\homeproject\blog\client\api\CurrentUserPostsApi$1.class
+com\softserveinc\ita\homeproject\blog\JSON$ClassDiscriminatorMapping.class
 com\softserveinc\ita\homeproject\blog\client\api\PostsApi$3.class
 com\softserveinc\ita\homeproject\blog\client\model\Error.class
 com\softserveinc\ita\homeproject\blog\client\model\Role$NameEnum.class
@@ -9,6 +11,7 @@ com\softserveinc\ita\homeproject\blog\client\api\UsersApi$6.class
 com\softserveinc\ita\homeproject\blog\StringUtil.class
 com\softserveinc\ita\homeproject\blog\ApiResponse.class
 com\softserveinc\ita\homeproject\blog\client\api\CommentsApi$1.class
+com\softserveinc\ita\homeproject\blog\model\AbstractOpenApiSchema.class
 com\softserveinc\ita\homeproject\blog\client\model\Role.class
 com\softserveinc\ita\homeproject\blog\client\api\CurrentUserCommentsApi$3.class
 com\softserveinc\ita\homeproject\blog\client\api\UsersApi$2.class
@@ -50,5 +53,6 @@ com\softserveinc\ita\homeproject\blog\ApiException.class
 com\softserveinc\ita\homeproject\blog\ServerVariable.class
 com\softserveinc\ita\homeproject\blog\client\api\CurrentUserCommentsApi$2.class
 com\softserveinc\ita\homeproject\blog\client\api\UsersApi.class
+com\softserveinc\ita\homeproject\blog\ApiClient$2.class
 com\softserveinc\ita\homeproject\blog\auth\Authentication.class
 com\softserveinc\ita\homeproject\blog\client\api\PostsApi$2.class

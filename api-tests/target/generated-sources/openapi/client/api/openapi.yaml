@@ -2061,6 +2061,7 @@ components:
         name: blogger
       properties:
         name:
+          default: blogger
           description: The name of the Role.
           enum:
           - blogger

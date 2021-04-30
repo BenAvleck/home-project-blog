@@ -23,12 +23,13 @@ Create a new Comment.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
 
 public class Example {
@@ -42,7 +43,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
         Comment comment = new Comment(); // Comment | 
         try {
             Comment result = apiInstance.createComment(postId, comment);
@@ -99,12 +100,13 @@ Retrieves an existing Comment associated with the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
 
 public class Example {
@@ -118,8 +120,8 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Comment result = apiInstance.getComment(postId, id);
             System.out.println(result);
@@ -175,12 +177,13 @@ Uses query keys to retrieve a subset of existing comments.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
 
 public class Example {
@@ -194,8 +197,8 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String userName = "userName_example"; // String | 
         String userId = "userId_example"; // String | 
         String sort = "-id"; // String | In order to execute *asc*, you need to specify in the search *id* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* 
@@ -260,12 +263,13 @@ Deletes a Comment associated with a specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
 
 public class Example {
@@ -279,8 +283,8 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removeComment(postId, id);
         } catch (ApiException e) {
@@ -337,12 +341,13 @@ Updates information on a Comment that exists in the system by the specified ID a
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CommentsApi;
 
 public class Example {
@@ -356,8 +361,8 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        BigDecimal postId = new BigDecimal(); // BigDecimal | 
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal postId = new BigDecimal(78); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         Comment comment = new Comment(); // Comment | 
         try {
             Comment result = apiInstance.updateComment(postId, id, comment);

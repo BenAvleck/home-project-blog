@@ -20,13 +20,13 @@
 
     <junit-jupiter-engine.version>5.5.2</junit-jupiter-engine.version>
 
-    <jackson-version>2.9.9</jackson-version>
+    <jackson-version>2.12.3</jackson-version>
     <jackson-databind-nullable-version>0.2.1</jackson-databind-nullable-version>
     <junit-version>4.13</junit-version>
     <jsr305-version>3.0.2</jsr305-version>
     <swagger-annotations-version>1.5.22</swagger-annotations-version>
     <jersey-version>2.32</jersey-version>
-
+    <threetenbp-version>2.9.10</threetenbp-version>
   </properties>
 
   <dependencies>
@@ -55,7 +55,7 @@
     <dependency>
       <groupId>com.fasterxml.jackson.datatype</groupId>
       <artifactId>jackson-datatype-jsr310</artifactId>
-      <version>${jackson-version}</version>
+      <version>2.10.3</version>
     </dependency>
     <dependency>
       <groupId>org.openapitools</groupId>
@@ -76,12 +76,6 @@
       <version>${swagger-annotations-version}</version>
     </dependency>
 
-    <!--For Pair.class-->
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-base</artifactId>
-      <version>11</version>
-    </dependency>
 
     <!--Random String-->
     <dependency>
@@ -129,6 +123,14 @@
       <artifactId>jersey-media-json-jackson</artifactId>
       <version>${jersey-version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.joschi.jackson</groupId>
+      <artifactId>jackson-datatype-threetenbp</artifactId>
+      <version>${threetenbp-version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+
+
   </dependencies>
 
   <build>
@@ -136,7 +138,8 @@
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>4.3.1</version>
+        <version>5.0.1</version>
+
         <executions>
           <execution>
             <phase>generate-sources</phase>
@@ -159,7 +162,8 @@
                 <modelPackage>com.softserveinc.ita.homeproject.blog.client.model</modelPackage>
                 <apiPackage>com.softserveinc.ita.homeproject.blog.client.api</apiPackage>
                 <invokerPackage>com.softserveinc.ita.homeproject.blog</invokerPackage>
-                <useRuntimeException>true</useRuntimeException>
+                <useRuntimeException>true</useRuntimeException>]
+                <openApiNullable>true</openApiNullable>
               </configOptions>
               <templateDirectory>${project.build.resources[0].directory}/mustaches/client</templateDirectory>
               <output>${project.build.directory}/generated-sources/openapi/client</output>

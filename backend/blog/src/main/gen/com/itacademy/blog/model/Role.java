@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * This is the level of User access to various functions.
  */
 @ApiModel(description = "This is the level of User access to various functions.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T22:19:37.203804500+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-30T22:35:06.949496200+03:00[Europe/Kiev]")
 public class Role  implements Serializable {
   private static final long serialVersionUID = 1L;
 

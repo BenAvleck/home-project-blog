@@ -26,7 +26,7 @@ import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserApi;
 
 public class Example {
@@ -97,7 +97,7 @@ import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserApi;
 
 public class Example {
@@ -170,7 +170,7 @@ import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserApi;
 
 public class Example {

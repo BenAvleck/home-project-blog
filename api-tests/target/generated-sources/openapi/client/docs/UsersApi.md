@@ -30,7 +30,7 @@ import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -98,12 +98,13 @@ Retrieves an existing User associated with the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -117,7 +118,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             User result = apiInstance.getUser(id);
             System.out.println(result);
@@ -174,12 +175,13 @@ Retrieves an existing User Role associated with the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -193,7 +195,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Role result = apiInstance.getUserRole(id);
             System.out.println(result);
@@ -250,12 +252,13 @@ Uses query keys to retrieve a subset of existing users.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -269,7 +272,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String name = "name_example"; // String | 
         String sort = "-id"; // String | In order to execute *asc*, you need to specify in the search *id* or *name* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* 
         Integer pageNum = 56; // Integer | 
@@ -333,12 +336,13 @@ Deletes a User associated with a specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -352,7 +356,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removeUser(id);
         } catch (ApiException e) {
@@ -408,12 +412,13 @@ Updates information on a User that exists in the system by the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -427,7 +432,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         User user = new User(); // User | 
         try {
             User result = apiInstance.updateUser(id, user);
@@ -486,12 +491,13 @@ Updates Role on a User that exists in the system by the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
 
 public class Example {
@@ -505,7 +511,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         Role role = new Role(); // Role | 
         try {
             Role result = apiInstance.updateUserRole(id, role);

@@ -22,12 +22,13 @@ Retrieves an existing Comment associated with the specified ID and Current User.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserCommentsApi;
 
 public class Example {
@@ -41,7 +42,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserCommentsApi apiInstance = new CurrentUserCommentsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Comment result = apiInstance.getCommentByCurrentUser(id);
             System.out.println(result);
@@ -97,12 +98,13 @@ Uses query keys to retrieve a subset of existing comments assosiated with Curren
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserCommentsApi;
 
 public class Example {
@@ -116,7 +118,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserCommentsApi apiInstance = new CurrentUserCommentsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String sort = "-id"; // String | In order to execute *asc*, you need to specify in the search *id* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* 
         Integer pageNum = 56; // Integer | 
         Integer pageSize = 56; // Integer | 
@@ -176,12 +178,13 @@ Deletes a Comment associated with a specified ID and Current User.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserCommentsApi;
 
 public class Example {
@@ -195,7 +198,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserCommentsApi apiInstance = new CurrentUserCommentsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removeCommentByCurrentUser(id);
         } catch (ApiException e) {
@@ -250,12 +253,13 @@ Updates information on a Comment that exists in the system by the specified ID a
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserCommentsApi;
 
 public class Example {
@@ -269,7 +273,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserCommentsApi apiInstance = new CurrentUserCommentsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         Comment comment = new Comment(); // Comment | 
         try {
             Comment result = apiInstance.updateCommentByCurrentUser(id, comment);

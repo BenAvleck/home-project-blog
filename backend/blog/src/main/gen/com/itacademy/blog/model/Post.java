@@ -3,8 +3,8 @@ package com.itacademy.blog.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.itacademy.blog.model.Author;
 import com.itacademy.blog.model.Tag;
-import com.itacademy.blog.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -20,7 +20,7 @@ import javax.validation.constraints.*;
  * A representation of Post entity.
  */
 @ApiModel(description = "A representation of Post entity.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T22:19:37.203804500+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-30T22:35:06.949496200+03:00[Europe/Kiev]")
 public class Post  implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class Post  implements Serializable {
   private OffsetDateTime createdOn;
 
   @JsonProperty("user")
-  private User user = null;
+  private Author user = null;
 
   @JsonProperty("text")
   private String text;
@@ -122,7 +122,7 @@ public class Post  implements Serializable {
     this.createdOn = createdOn;
   }
 
-  public Post user(User user) {
+  public Post user(Author user) {
     this.user = user;
     return this;
   }
@@ -135,11 +135,11 @@ public class Post  implements Serializable {
 
   @Valid
 
-  public User getUser() {
+  public Author getUser() {
     return user;
   }
 
-  public void setUser(User user) {
+  public void setUser(Author user) {
     this.user = user;
   }
 

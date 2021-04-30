@@ -28,7 +28,7 @@ import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.PostsApi;
 
 public class Example {
@@ -97,12 +97,13 @@ Retrieves an existing Post associated with the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.PostsApi;
 
 public class Example {
@@ -116,7 +117,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         PostsApi apiInstance = new PostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Post result = apiInstance.getPost(id);
             System.out.println(result);
@@ -171,12 +172,13 @@ Uses query keys to retrieve a subset of existing posts.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.PostsApi;
 
 public class Example {
@@ -190,7 +192,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         PostsApi apiInstance = new PostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String tagId = "tagId_example"; // String | 
         String tagName = "tagName_example"; // String | 
         String userId = "userId_example"; // String | 
@@ -255,12 +257,13 @@ Deletes a Post associated with a specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.PostsApi;
 
 public class Example {
@@ -274,7 +277,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         PostsApi apiInstance = new PostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removePost(id);
         } catch (ApiException e) {
@@ -330,12 +333,13 @@ Updates information on a Post that exists in the system by the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.PostsApi;
 
 public class Example {
@@ -349,7 +353,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         PostsApi apiInstance = new PostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         Post post = new Post(); // Post | 
         try {
             Post result = apiInstance.updatePost(id, post);

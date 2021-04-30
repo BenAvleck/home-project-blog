@@ -7,7 +7,7 @@ A representation of User entity.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | [**BigDecimal**](BigDecimal.md) | The ID of the User. |  [optional] [readonly]
+**id** | **BigDecimal** | The ID of the User. |  [optional] [readonly]
 **name** | **String** | The name of the User. | 
 **firstName** | **String** | The first name of the User. |  [optional]
 **lastName** | **String** | The last name of the User. |  [optional]

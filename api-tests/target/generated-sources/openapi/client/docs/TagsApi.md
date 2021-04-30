@@ -21,12 +21,13 @@ Retrieves an existing Tag associated with the specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.TagsApi;
 
 public class Example {
@@ -40,7 +41,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         TagsApi apiInstance = new TagsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Tag result = apiInstance.getTag(id);
             System.out.println(result);
@@ -95,12 +96,13 @@ Uses query keys to retrieve a subset of existing tags.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.TagsApi;
 
 public class Example {
@@ -114,7 +116,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         TagsApi apiInstance = new TagsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String name = "name_example"; // String | 
         String sort = "name"; // String | In order to execute *asc*, you need to specify in the search *id* or *name* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* 
         Integer pageNum = 56; // Integer | 
@@ -175,12 +177,13 @@ Deletes a Tag associated with a specified ID.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.TagsApi;
 
 public class Example {
@@ -194,7 +197,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         TagsApi apiInstance = new TagsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removeTag(id);
         } catch (ApiException e) {

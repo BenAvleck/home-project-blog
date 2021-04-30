@@ -418,7 +418,7 @@ paths:
         - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/tag_id'
         - $ref: '#/components/parameters/tag_name'
-        - $ref: '#/components/parameters/user_id'
+        - $ref: '#/components/parameters/author_name'
         - $ref: '#/components/parameters/posts_sort'
         - $ref: '#/components/parameters/page_num'
         - $ref: '#/components/parameters/page_size'
@@ -498,8 +498,7 @@ paths:
       operationId: getComments
       parameters:
         - $ref: '#/components/parameters/id'
-        - $ref: '#/components/parameters/user_name'
-        - $ref: '#/components/parameters/user_id'
+        - $ref: '#/components/parameters/author_name'
         - $ref: '#/components/parameters/comments_sort'
         - $ref: '#/components/parameters/page_num'
         - $ref: '#/components/parameters/page_size'
@@ -741,7 +740,7 @@ components:
           description: The creator of the Post.
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/User"
+            - $ref: "#/components/schemas/Author"
         text:
           description: The content of the Post.
           type: string
@@ -758,6 +757,20 @@ components:
           format: date-time
           readOnly: true
 
+    Author:
+      description: A representation of User entity for posts and comments
+      properties:
+        name:
+          description: The alias of the user.
+          type: string
+        firstName:
+          description: The name of the user.
+          type: string
+        lastName:
+          description: The lastName of the User.
+          type: string
+
+
     Comment:
       description: A representation of Comment entity.
       required:
@@ -772,7 +785,7 @@ components:
           description: The creator of the Comment.
           readOnly: true
           allOf:
-            - $ref: "#/components/schemas/User"
+            - $ref: "#/components/schemas/Author"
         text:
           description: The content of the Comment.
           type: string
@@ -1006,9 +1019,9 @@ components:
       name: name
       schema:
         type: string
-    user_name:
+    author_name:
       in: query
-      name: user_name
+      name: author_name
       schema:
         type: string
     tag_name:

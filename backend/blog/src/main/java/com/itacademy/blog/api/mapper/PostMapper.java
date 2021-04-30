@@ -1,8 +1,10 @@
 package com.itacademy.blog.api.mapper;
 
 
+import com.itacademy.blog.model.Author;
 import com.itacademy.blog.model.Post;
 import com.itacademy.blog.services.DTO.PostDTO;
+import com.itacademy.blog.services.DTO.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -16,7 +18,7 @@ public interface PostMapper {
     @Mapping(source = "user", target = "user")
     PostDTO convert(Post post);
 
-    @Mapping(target = "user.password", constant = "********")
+    Author convert(UserDTO user );
     @Mapping(source = "user", target = "user")
     Post convert(PostDTO postDTO);
     @Mapping(target = "user.password", constant = "********")

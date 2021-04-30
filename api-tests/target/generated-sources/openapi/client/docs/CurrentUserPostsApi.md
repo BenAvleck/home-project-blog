@@ -22,12 +22,13 @@ Retrieves an existing Post associated with the specified ID and Current User.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserPostsApi;
 
 public class Example {
@@ -41,7 +42,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserPostsApi apiInstance = new CurrentUserPostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             Post result = apiInstance.getPostByCurrentUser(id);
             System.out.println(result);
@@ -97,12 +98,13 @@ Uses query keys to retrieve a subset of existing posts assosiated with Current U
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserPostsApi;
 
 public class Example {
@@ -116,7 +118,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserPostsApi apiInstance = new CurrentUserPostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         String tagId = "tagId_example"; // String | 
         String tagName = "tagName_example"; // String | 
         String sort = "-id"; // String | In order to execute *asc*, you need to specify in the search *id* or *title* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* 
@@ -180,12 +182,13 @@ Deletes a Post associated with a specified ID and Current User.
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserPostsApi;
 
 public class Example {
@@ -199,7 +202,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserPostsApi apiInstance = new CurrentUserPostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         try {
             apiInstance.removePostByCurrentUser(id);
         } catch (ApiException e) {
@@ -254,12 +257,13 @@ Updates information on a Post that exists in the system by the specified ID and 
 ### Example
 
 ```java
+import java.math.BigDecimal;
 // Import classes:
 import com.softserveinc.ita.homeproject.blog.ApiClient;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.Configuration;
 import com.softserveinc.ita.homeproject.blog.auth.*;
-import com.softserveinc.ita.homeproject.blog.models.*;
+import com.softserveinc.ita.homeproject.blog.model.*;
 import com.softserveinc.ita.homeproject.blog.client.api.CurrentUserPostsApi;
 
 public class Example {
@@ -273,7 +277,7 @@ public class Example {
         basicAuth.setPassword("YOUR PASSWORD");
 
         CurrentUserPostsApi apiInstance = new CurrentUserPostsApi(defaultClient);
-        BigDecimal id = new BigDecimal(); // BigDecimal | 
+        BigDecimal id = new BigDecimal(78); // BigDecimal | 
         Post post = new Post(); // Post | 
         try {
             Post result = apiInstance.updatePostByCurrentUser(id, post);

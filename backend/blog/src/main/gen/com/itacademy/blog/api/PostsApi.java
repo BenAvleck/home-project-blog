@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T22:19:37.203804500+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-30T22:35:06.949496200+03:00[Europe/Kiev]")
 @Validated
 @Api(value = "posts", description = "the posts API")
 public interface PostsApi {
@@ -158,8 +158,7 @@ public interface PostsApi {
      *
      * @param postId  (required)
      * @param id  (optional)
-     * @param userName  (optional)
-     * @param userId  (optional)
+     * @param authorName  (optional)
      * @param sort In order to execute *asc*, you need to specify in the search *id* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id*  (optional, default to -id)
      * @param pageNum  (optional)
      * @param pageSize  (optional)
@@ -179,7 +178,7 @@ public interface PostsApi {
         value = "/posts/{post_id}/comments",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Comment>> getComments(@ApiParam(value = "",required=true) @PathVariable("post_id") BigDecimal postId,@ApiParam(value = "") @Valid @RequestParam(value = "id", required = false) BigDecimal id,@ApiParam(value = "") @Valid @RequestParam(value = "user_name", required = false) String userName,@ApiParam(value = "") @Valid @RequestParam(value = "user_id", required = false) String userId,@ApiParam(value = "In order to execute *asc*, you need to specify in the search *id* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* ", allowableValues = "id, -id", defaultValue = "-id") @Valid @RequestParam(value = "sort", required = false, defaultValue="-id") String sort,@ApiParam(value = "") @Valid @RequestParam(value = "page_num", required = false) Integer pageNum,@ApiParam(value = "") @Valid @RequestParam(value = "page_size", required = false) Integer pageSize) {
+    default ResponseEntity<List<Comment>> getComments(@ApiParam(value = "",required=true) @PathVariable("post_id") BigDecimal postId,@ApiParam(value = "") @Valid @RequestParam(value = "id", required = false) BigDecimal id,@ApiParam(value = "") @Valid @RequestParam(value = "author_name", required = false) String authorName,@ApiParam(value = "In order to execute *asc*, you need to specify in the search *id* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* ", allowableValues = "id, -id", defaultValue = "-id") @Valid @RequestParam(value = "sort", required = false, defaultValue="-id") String sort,@ApiParam(value = "") @Valid @RequestParam(value = "page_num", required = false) Integer pageNum,@ApiParam(value = "") @Valid @RequestParam(value = "page_size", required = false) Integer pageSize) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -239,7 +238,7 @@ public interface PostsApi {
      * @param id  (optional)
      * @param tagId  (optional)
      * @param tagName  (optional)
-     * @param userId  (optional)
+     * @param authorName  (optional)
      * @param sort In order to execute *asc*, you need to specify in the search *id* or *title* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id*  (optional, default to -id)
      * @param pageNum  (optional)
      * @param pageSize  (optional)
@@ -257,7 +256,7 @@ public interface PostsApi {
         value = "/posts",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<Post>> getPosts(@ApiParam(value = "") @Valid @RequestParam(value = "id", required = false) BigDecimal id,@ApiParam(value = "") @Valid @RequestParam(value = "tag_id", required = false) String tagId,@ApiParam(value = "") @Valid @RequestParam(value = "tag_name", required = false) String tagName,@ApiParam(value = "") @Valid @RequestParam(value = "user_id", required = false) String userId,@ApiParam(value = "In order to execute *asc*, you need to specify in the search *id* or *title* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* ", allowableValues = "id, -id, title, -title", defaultValue = "-id") @Valid @RequestParam(value = "sort", required = false, defaultValue="-id") String sort,@ApiParam(value = "") @Valid @RequestParam(value = "page_num", required = false) Integer pageNum,@ApiParam(value = "") @Valid @RequestParam(value = "page_size", required = false) Integer pageSize) {
+    default ResponseEntity<List<Post>> getPosts(@ApiParam(value = "") @Valid @RequestParam(value = "id", required = false) BigDecimal id,@ApiParam(value = "") @Valid @RequestParam(value = "tag_id", required = false) String tagId,@ApiParam(value = "") @Valid @RequestParam(value = "tag_name", required = false) String tagName,@ApiParam(value = "") @Valid @RequestParam(value = "author_name", required = false) String authorName,@ApiParam(value = "In order to execute *asc*, you need to specify in the search *id* or *title* parameter. In order to complete the *desc* sorting must be specified in the query parameter *-id* ", allowableValues = "id, -id, title, -title", defaultValue = "-id") @Valid @RequestParam(value = "sort", required = false, defaultValue="-id") String sort,@ApiParam(value = "") @Valid @RequestParam(value = "page_num", required = false) Integer pageNum,@ApiParam(value = "") @Valid @RequestParam(value = "page_size", required = false) Integer pageSize) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

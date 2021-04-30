@@ -11,17 +11,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class ApiClientUtil {
-    private static final String APPLICATION_EXTERNAL_PORT = System.getProperty("8080");
-    private static final String APPLICATION_ADMIN_EMAIL = System.getProperty("test@admin.com");
-    private static final String APPLICATION_ADMIN_PASSWORD = System.getProperty("pasworD321");
+    private static final String APPLICATION_EXTERNAL_PORT = "8080";
+    private static final String APPLICATION_ADMIN_EMAIL = "test@admin.com";
+    private static final String APPLICATION_ADMIN_PASSWORD = "passworD321";
     private static final String VERBOSE_LOGGING = System.getProperty("verbose.tests.logging", "true");
 
     public static ApiClient getClient() {
         ApiClient client = new ApiClient();
         setLoggingFeature(client);
+        setServers(client);
         client.setUsername(APPLICATION_ADMIN_EMAIL);
         client.setPassword(APPLICATION_ADMIN_PASSWORD);
-        setServers(client);
         return client;
     }
 
@@ -42,6 +42,7 @@ public final class ApiClientUtil {
 
     private static void setServers(ApiClient client) {
         client.setServers(List.of(new ServerConfiguration("http://localhost:" +
-            APPLICATION_EXTERNAL_PORT + "/api/1", "No description provided", new HashMap())));
+                APPLICATION_EXTERNAL_PORT + "/api/1", "No description provided", new HashMap<>())));
     }
+
 }

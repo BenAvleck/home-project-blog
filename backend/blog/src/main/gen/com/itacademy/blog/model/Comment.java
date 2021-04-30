@@ -3,7 +3,7 @@ package com.itacademy.blog.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.itacademy.blog.model.User;
+import com.itacademy.blog.model.Author;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
  * A representation of Comment entity.
  */
 @ApiModel(description = "A representation of Comment entity.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-29T22:19:37.203804500+03:00[Europe/Kiev]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-04-30T22:35:06.949496200+03:00[Europe/Kiev]")
 public class Comment  implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class Comment  implements Serializable {
   private BigDecimal id;
 
   @JsonProperty("user")
-  private User user = null;
+  private Author user = null;
 
   @JsonProperty("text")
   private String text;
@@ -59,7 +59,7 @@ public class Comment  implements Serializable {
     this.id = id;
   }
 
-  public Comment user(User user) {
+  public Comment user(Author user) {
     this.user = user;
     return this;
   }
@@ -72,11 +72,11 @@ public class Comment  implements Serializable {
 
   @Valid
 
-  public User getUser() {
+  public Author getUser() {
     return user;
   }
 
-  public void setUser(User user) {
+  public void setUser(Author user) {
     this.user = user;
   }
 
