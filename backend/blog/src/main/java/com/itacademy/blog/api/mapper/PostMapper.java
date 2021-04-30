@@ -15,12 +15,10 @@ import java.util.List;
 public interface PostMapper {
     PostMapper INSTANCE = Mappers.getMapper( PostMapper.class );
 
-    @Mapping(source = "user", target = "user")
+    @Mapping(source = "author", target = "user")
     PostDTO convert(Post post);
 
     Author convert(UserDTO user );
-    @Mapping(source = "user", target = "user")
+    @Mapping(source = "user", target = "author")
     Post convert(PostDTO postDTO);
-    @Mapping(target = "user.password", constant = "********")
-    List<PostDTO> convert(List<Post> postEntities);
 }

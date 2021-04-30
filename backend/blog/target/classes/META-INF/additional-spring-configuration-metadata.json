@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "springfox.documentation.swagger.v2.path",
-      "type": "java.lang.String",
-      "description": "Description for springfox.documentation.swagger.v2.path."
-  }
-] }

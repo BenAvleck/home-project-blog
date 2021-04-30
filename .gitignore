@@ -23,7 +23,5 @@
 hs_err_pid*
 
 .idea
-*gen
-/backend/blog/src/main/gen/
-/backend/blog/target
-/api-tests/target
+gen/
+target/
