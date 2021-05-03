@@ -203,7 +203,7 @@ class UserApiIT {
                 .email(RandomStringUtils.randomAlphabetic(5).concat("@example.com"));
     }
 
-    private List<User>saveListUser() throws ApiException {
+    private List<User> saveListUser() throws ApiException {
         List<User> list = createUsersList();
         List<User> userList = new ArrayList<>();
         for (User cu : list) {
@@ -214,41 +214,9 @@ class UserApiIT {
 
     private List<User> createUsersList() {
         List<User> list = new ArrayList<>();
-        list.add(new User().
-                name(RandomStringUtils.randomAlphabetic(5)).
-                firstName("Alex").
-                lastName("Young").
-                email(RandomStringUtils.randomAlphabetic(5).concat("@example.com")).
-                password("passworD321")
-        );
-        list.add(new User().
-                name(RandomStringUtils.randomAlphabetic(5)).
-                firstName("Bob").
-                lastName("Smith").
-                email(RandomStringUtils.randomAlphabetic(5).concat("@example.com")).
-                password("passworD321")
-        );
-        list.add(new User().
-                name(RandomStringUtils.randomAlphabetic(5)).
-                firstName("Jack").
-                lastName("Gray").
-                email(RandomStringUtils.randomAlphabetic(5).concat("@example.com")).
-                password("passworD321")
-        );
-        list.add(new User().
-                name(RandomStringUtils.randomAlphabetic(5)).
-                firstName("Sindy").
-                lastName("Black").
-                email(RandomStringUtils.randomAlphabetic(5).concat("@example.com")).
-                password("passworD321")
-        );
-        list.add(new User().
-                name(RandomStringUtils.randomAlphabetic(5)).
-                firstName("Victor").
-                lastName("Along").
-                email(RandomStringUtils.randomAlphabetic(5).concat("@example.com")).
-                password("passworD321")
-        );
+        list.add(createTestUser());
+        list.add(createTestUser());
+        list.add(createTestUser());
         return list;
     }
     private void assertUserRole(Role expected, Role actual) {

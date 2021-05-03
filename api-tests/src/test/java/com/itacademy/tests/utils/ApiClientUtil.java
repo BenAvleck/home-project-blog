@@ -16,6 +16,15 @@ public final class ApiClientUtil {
     private static final String APPLICATION_ADMIN_PASSWORD = "passworD321";
     private static final String VERBOSE_LOGGING = System.getProperty("verbose.tests.logging", "true");
 
+    public static ApiClient getClient(String email, String password) {
+        ApiClient client = new ApiClient();
+        setLoggingFeature(client);
+        setServers(client);
+        client.setUsername(email);
+        client.setPassword(password);
+        return client;
+    }
+
     public static ApiClient getClient() {
         ApiClient client = new ApiClient();
         setLoggingFeature(client);
