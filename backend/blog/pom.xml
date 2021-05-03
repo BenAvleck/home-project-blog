@@ -37,8 +37,7 @@
                         </goals>
                         <configuration>
                             <generatorName>spring</generatorName>
-                            <inputSpec>F:\SoftServe\ITAcademy\BlogProject\home-project-blog\openapi\openapi.yaml
-                            </inputSpec>
+                            <inputSpec>../openapi/openapi.yaml</inputSpec>
                             <library>spring-boot</library>
                             <output>${project.basedir}</output>
                             <configOptions>
