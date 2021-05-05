@@ -2,7 +2,6 @@ package com.itacademy.blog.api;
 
 import com.itacademy.blog.api.mapper.CommentMapper;
 import com.itacademy.blog.api.mapper.PostMapper;
-import com.itacademy.blog.api.mapper.UserMapper;
 import com.itacademy.blog.data.repository.PostRepo;
 import com.itacademy.blog.model.Comment;
 import com.itacademy.blog.model.Post;
@@ -71,7 +70,7 @@ public class PostsApiController implements PostsApi {
         if (!optionalPostDTO.isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @Override
@@ -107,8 +106,6 @@ public class PostsApiController implements PostsApi {
         }
 
         filterMap.put("tags.id", tagId);
-        //Problem with handling tags with spaces in their names
-        //Have not started working on the solution yet
         filterMap.put("tags.name", tagName);
         filterMap.put("user.id", authorName);
 
@@ -151,7 +148,7 @@ public class PostsApiController implements PostsApi {
 
     //to do
     @Override
-    @PreAuthorize("hasAuthority('coment:update')")
+    @PreAuthorize("hasAuthority('comments:update')")
     public ResponseEntity<Comment> updateComment(BigDecimal postId, BigDecimal id, @Valid Comment comment) {
         CommentDTO updateCommentDto = CommentMapper.INSTANCE.convert(comment);
         CommentDTO readCommentDto = commentService.updateComment(postId.longValue(), id.longValue(), updateCommentDto);
@@ -162,7 +159,7 @@ public class PostsApiController implements PostsApi {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('post:update')")
+    @PreAuthorize("hasAuthority('posts:update')")
     public ResponseEntity<Post> updatePost(BigDecimal id, @Valid Post post) {
         PostDTO updatePostDto = PostMapper.INSTANCE.convert(post);
         PostDTO readPostDto = postService.updatePost(id.longValue(), updatePostDto);
@@ -174,7 +171,7 @@ public class PostsApiController implements PostsApi {
 
 
     @Override
-    @PreAuthorize("hasAuthority('comment:remove')")
+    @PreAuthorize("hasAuthority('comments:delete')")
     public ResponseEntity<Void> removeComment(BigDecimal postId, BigDecimal id) {
 
         Optional<CommentDTO> optionalCommentDTO = Optional.ofNullable(commentService.deleteComment(postId.longValue(), id.longValue()));

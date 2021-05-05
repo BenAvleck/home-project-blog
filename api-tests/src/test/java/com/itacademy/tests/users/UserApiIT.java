@@ -3,6 +3,7 @@ package com.itacademy.tests.users;
 import com.itacademy.tests.utils.ApiClientUtil;
 import com.softserveinc.ita.homeproject.blog.ApiException;
 import com.softserveinc.ita.homeproject.blog.client.api.UsersApi;
+import com.softserveinc.ita.homeproject.blog.client.model.Post;
 import com.softserveinc.ita.homeproject.blog.client.model.Role;
 import com.softserveinc.ita.homeproject.blog.client.model.User;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -49,7 +50,6 @@ class UserApiIT {
                 1,
                 10
         );
-
         actualListUsers.forEach(readUser -> assertThat(readUser.getId()).isEqualTo(expectedUser.getId()));
     }
 
@@ -111,8 +111,8 @@ class UserApiIT {
     void updateUserRole() {
         User user = userApi.createUser(createTestUser());
         Role provided = new Role().name(Role.NameEnum.MODERATOR);
-        userApi.updateUserRole(user.getId(), provided);
-        assertEquals(user.getRole(), provided);
+        Role updated = userApi.updateUserRole(user.getId(), provided);
+        assertUserRole(user.getRole(), provided, updated);
     }
 
     @Test
@@ -203,13 +203,11 @@ class UserApiIT {
                 .email(RandomStringUtils.randomAlphabetic(5).concat("@example.com"));
     }
 
-    private List<User> saveListUser() throws ApiException {
+    private void saveListUser() throws ApiException {
         List<User> list = createUsersList();
-        List<User> userList = new ArrayList<>();
         for (User cu : list) {
-            userList.add(userApi.createUser(cu));
+            userApi.createUser(cu);
         }
-        return userList;
     }
 
     private List<User> createUsersList() {
@@ -222,6 +220,11 @@ class UserApiIT {
     private void assertUserRole(Role expected, Role actual) {
         assertNotNull(expected);
         assertEquals(expected.getName(), actual.getName());
+    }
+    private void assertUserRole(Role saved, Role update, Role updated) {
+        assertNotNull(updated);
+        assertNotEquals(saved, updated);
+        assertEquals(update.getName(), updated.getName());
     }
 
     private void assertUser(User expected, User actual) {

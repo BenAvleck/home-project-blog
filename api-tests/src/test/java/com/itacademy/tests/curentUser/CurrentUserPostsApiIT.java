@@ -46,7 +46,7 @@ public class CurrentUserPostsApiIT {
                 ,null
                 , "-id"
                 , 1
-                , 10);
+                , 100);
 
         assertFalse(actualPostsList.contains(expectedPost));
         assertThatExceptionOfType(ApiException.class)
