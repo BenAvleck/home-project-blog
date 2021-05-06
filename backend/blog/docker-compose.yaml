@@ -22,9 +22,18 @@ services:
     restart: always
   flyway:
     image: flyway/flyway
-#    command: -url=jdbc:postgresql://db:5432/blog  -schemas=public -user=postgres -password=somepassword migrate
+    #    command: -url=jdbc:postgresql://db:5432/blog  -schemas=public -user=postgres -password=somepassword migrate
     volumes:
       - ./src/main/resources/db/migration/:/flyway/sql/
     restart: on-failure
     depends_on:
       - db
+  tests: #to do
+    build: .
+    container_name: springapptests
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blog
+    ports:
+      - 8000:8080
+    restart: always
+

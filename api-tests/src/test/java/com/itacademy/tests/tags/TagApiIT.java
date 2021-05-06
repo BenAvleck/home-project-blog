@@ -23,20 +23,10 @@ public class TagApiIT {
 
     @org.junit.jupiter.api.Test
     void removeTag() {
-        Tag tag = Objects.requireNonNull(postsApi.createPost(createTestPostWithTags()).getTags()).get(0);
+        Tag tag = Objects.requireNonNull(postsApi.createPost(createTestPostWithTag()).getTags()).get(0);
         tagsApi.removeTag(tag.getId());
-
-        List<Tag> actualTagList = tagsApi.getTags(
-                tag.getId()
-                ,null
-                ,"-id"
-                , 1
-                , 10);
-
-        assertFalse(actualTagList.contains(tag));
         assertThatExceptionOfType(ApiException.class)
                 .isThrownBy(() -> tagsApi.getTag(tag.getId()));
-
     }
 
     @org.junit.jupiter.api.Test

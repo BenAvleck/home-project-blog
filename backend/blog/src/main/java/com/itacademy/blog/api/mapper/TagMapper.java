@@ -17,4 +17,6 @@ public interface TagMapper {
     Tag convert(TagDTO userDTO);
 
     List<TagDTO> convert(List<Tag> userEntities);
+
+
 }

@@ -69,9 +69,9 @@ public class CurrentUserCommentsApiIT {
     @Test
     void updateCommentByCurrentUser() {
         Post post = postsApi.createPost(createTestPost());
-        commentsApi.createComment(post.getId(), createTestComment());
+        Comment comment = commentsApi.createComment(post.getId(), createTestComment());
         Comment savedComment = currentUserCommentsApi
-                .getCommentByCurrentUser(post.getId());
+                .getCommentByCurrentUser(comment.getId());
         Comment updateComment = new Comment()
                 .text("newText");
         Comment updated = currentUserCommentsApi.updateCommentByCurrentUser(savedComment.getId(), updateComment);
@@ -100,6 +100,7 @@ public class CurrentUserCommentsApiIT {
         return new Post().
                 title(RandomStringUtils.randomAlphabetic(5)).
                 text(RandomStringUtils.randomAlphabetic(5)).
+                previewAttachment(RandomStringUtils.randomAlphabetic(5)).
                 tags(Arrays.asList(new Tag().name(RandomStringUtils.randomAlphabetic(5))
                         , new Tag().name(RandomStringUtils.randomAlphabetic(5))));
     }

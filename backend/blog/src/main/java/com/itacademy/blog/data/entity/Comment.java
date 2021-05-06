@@ -20,7 +20,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User user;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class Comment {
     @Column(columnDefinition = "DATE")
     private OffsetDateTime createdOn;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Post post;
 
     @Column(columnDefinition = "DATE")

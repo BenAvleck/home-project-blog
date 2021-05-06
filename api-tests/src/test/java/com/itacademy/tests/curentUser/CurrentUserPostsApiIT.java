@@ -28,6 +28,7 @@ public class CurrentUserPostsApiIT {
         Post savedPost = currentUserPostsApi
                 .getPostByCurrentUser(post.getId());
         Post updatePost = new Post()
+                .previewAttachment("newPreviewAttachment")
                 .title("newTitle")
                 .text("newText");
         Post updated = currentUserPostsApi.updatePostByCurrentUser(savedPost.getId(), updatePost);
@@ -96,6 +97,7 @@ public class CurrentUserPostsApiIT {
         return new Post().
                 title(RandomStringUtils.randomAlphabetic(5)).
                 text(RandomStringUtils.randomAlphabetic(5)).
+                previewAttachment(RandomStringUtils.randomAlphabetic(5)).
                 tags(Arrays.asList(new Tag().name(RandomStringUtils.randomAlphabetic(5))
                         , new Tag().name(RandomStringUtils.randomAlphabetic(5))));
     }

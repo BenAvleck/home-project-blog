@@ -47,12 +47,9 @@ public class TagsApiController implements TagsApi {
     public ResponseEntity<Void> removeTag(BigDecimal id) {
         Optional<TagDTO> optionalTagDTO = Optional.ofNullable(tagService.deleteTag(id.longValue()));
 
-        if (optionalTagDTO.isPresent()) {
+        if (!optionalTagDTO.isPresent()) {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-
-        //to do return tag model in response
-        Tag returnTag = TagMapper.INSTANCE.convert(optionalTagDTO.get());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -68,8 +68,8 @@ public class CommentApiIT {
         commentsApi.removeComment(post.getId(), expected.getId());
 
         List<Comment> actualCommentsList = commentsApi.getComments(
-                expected.getId()
-                ,null
+                post.getId()
+                ,expected.getId()
                 ,null
                 ,"-id"
                 , 1

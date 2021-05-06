@@ -87,11 +87,12 @@ public class PostsApiController implements PostsApi {
         filterMap.put("author.name", authorName);
 
 
-        List<Comment> comments = commentService.findComments(Optional.ofNullable(pageNum).orElse(1)
+        List<CommentDTO> comments = commentService.findComments(Optional.ofNullable(pageNum).orElse(1)
                 , Optional.ofNullable(pageSize).orElse(10), Optional.ofNullable(sort).orElse("-id")
                 , entitySpecificationService.getSpecification(filterMap));
 
-        return comments.isEmpty() ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
+        List<Comment> commentList = CommentMapper.INSTANCE.convert(comments);
+        return new ResponseEntity<List<Comment>>(commentList, HttpStatus.OK);
 
     }
 
@@ -110,11 +111,12 @@ public class PostsApiController implements PostsApi {
         filterMap.put("user.id", authorName);
 
 
-        List<Post> posts = postService.findPosts(Optional.ofNullable(pageNum).orElse(1)
+        List<PostDTO> posts = postService.findPosts(Optional.ofNullable(pageNum).orElse(1)
                 , Optional.ofNullable(pageSize).orElse(10), Optional.ofNullable(sort).orElse("-id")
                 , entitySpecificationService.getSpecification(filterMap));
 
-        return new ResponseEntity<List<Post>>(posts, HttpStatus.OK);
+        List<Post> postList = PostMapper.INSTANCE.convert(posts);
+        return new ResponseEntity<>(postList, HttpStatus.OK);
     }
 
     @Override

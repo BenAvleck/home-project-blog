@@ -40,9 +40,9 @@ class CurrentUserApiIT {
     @Test
     void updateCurrentUserPassword() {
         User expected = usersApi.createUser(createTestUser());
-        CurrentUserApi currentUserApiForUpdatePassword = new CurrentUserApi(ApiClientUtil.getClient(expected.getEmail(), expected.getPassword()));
+        CurrentUserApi currentUserApiForUpdatePassword = new CurrentUserApi(ApiClientUtil.getClient(expected.getEmail(), "passworD321"));
         String newPassword = "newPassworD321";
-        currentUserApiForUpdatePassword.updateCurrentUserPassword(new Password().oldPassword(expected.getPassword()).newPassword(newPassword));
+        currentUserApiForUpdatePassword.updateCurrentUserPassword(new Password().oldPassword("passworD321").newPassword(newPassword));
         currentUserApiForUpdatePassword.getApiClient().setPassword(newPassword);
         User actual = currentUserApiForUpdatePassword.getCurrentUser();
         assertUser(expected, actual);

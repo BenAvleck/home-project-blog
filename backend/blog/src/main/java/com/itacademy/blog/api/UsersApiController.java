@@ -143,10 +143,11 @@ public class UsersApiController implements UsersApi {
             filterMap.put("id", null);
         }
         filterMap.put("user.id", userService.getCurrentUserEntity().getId().toString());
-        List<Comment> comments = commentService.findComments(Optional.ofNullable(pageNum).orElse(1)
+        List<CommentDTO> comments = commentService.findComments(Optional.ofNullable(pageNum).orElse(1)
                 , Optional.ofNullable(pageSize).orElse(10), Optional.ofNullable(sort).orElse("-id")
                 , entitySpecificationService.getSpecification(filterMap));
-        return new ResponseEntity<>(comments, HttpStatus.OK);
+        List<Comment> commentList = CommentMapper.INSTANCE.convert(comments);
+        return new ResponseEntity<>(commentList, HttpStatus.OK);
     }
 
     @Override
@@ -181,10 +182,11 @@ public class UsersApiController implements UsersApi {
         filterMap.put("tags.id", tagId);
         filterMap.put("tags.name", tagName);
         filterMap.put("user.id", userService.getCurrentUserEntity().getId().toString());
-        List<Post> posts = postService.findPosts(Optional.ofNullable(pageNum).orElse(1)
+        List<PostDTO> posts = postService.findPosts(Optional.ofNullable(pageNum).orElse(1)
                 , Optional.ofNullable(pageSize).orElse(10), Optional.ofNullable(sort).orElse("-id")
                 , entitySpecificationService.getSpecification(filterMap));
-        return new ResponseEntity<>(posts, HttpStatus.OK);
+        List<Post> postList = PostMapper.INSTANCE.convert(posts);
+        return new ResponseEntity<>(postList, HttpStatus.OK);
     }
 
     @Override

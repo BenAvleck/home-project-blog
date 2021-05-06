@@ -49,7 +49,6 @@ public class PostApiIT {
     @Test
     void getPosts() {
         saveListPost();
-        try {
             List<Post> posts = postsApi.getPosts(
                     null
                     , null
@@ -59,12 +58,7 @@ public class PostApiIT {
                     , 1
                     , 10
             );
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-/*
         assertThat(posts).isNotEmpty();
-*/
     }
 
 

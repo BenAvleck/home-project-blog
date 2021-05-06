@@ -9,6 +9,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface PostMapper {
     PostMapper INSTANCE = Mappers.getMapper( PostMapper.class );
@@ -19,4 +21,6 @@ public interface PostMapper {
     Author convert(UserDTO user );
     @Mapping(source = "user", target = "author")
     Post convert(PostDTO postDTO);
+
+    List<Post> convert(List<PostDTO> postDTOList);
 }
