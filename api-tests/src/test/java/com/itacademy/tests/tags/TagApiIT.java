@@ -7,6 +7,7 @@ import com.softserveinc.ita.homeproject.blog.client.api.TagsApi;
 import com.softserveinc.ita.homeproject.blog.client.model.Post;
 import com.softserveinc.ita.homeproject.blog.client.model.Tag;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,7 +22,7 @@ public class TagApiIT {
     TagsApi tagsApi = new TagsApi(ApiClientUtil.getClient());
     PostsApi postsApi = new PostsApi(ApiClientUtil.getClient());
 
-    @org.junit.jupiter.api.Test
+    @Test
     void removeTag() {
         Tag tag = Objects.requireNonNull(postsApi.createPost(createTestPostWithTag()).getTags()).get(0);
         tagsApi.removeTag(tag.getId());
@@ -29,7 +30,7 @@ public class TagApiIT {
                 .isThrownBy(() -> tagsApi.getTag(tag.getId()));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getTags() {
         postsApi.createPost(createTestPostWithTags());
         List<Tag> tags = tagsApi.getTags(
@@ -42,7 +43,7 @@ public class TagApiIT {
         assertThat(tags).isNotEmpty();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getTag() {
         Tag tag = Objects.requireNonNull(postsApi.createPost(createTestPostWithTag()).getTags()).get(0);
         Tag actual = tagsApi.getTag(tag.getId());

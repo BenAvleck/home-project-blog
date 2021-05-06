@@ -8,6 +8,7 @@ import com.softserveinc.ita.homeproject.blog.client.model.Comment;
 import com.softserveinc.ita.homeproject.blog.client.model.Post;
 import com.softserveinc.ita.homeproject.blog.client.model.Tag;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class CommentApiIT {
     private final CommentsApi commentsApi = new CommentsApi(ApiClientUtil.getClient());
     private final PostsApi postApi = new PostsApi(ApiClientUtil.getClient());
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getComments() {
         Post post = postApi.createPost(createTestPost());
         saveListComment(post.getId());
@@ -36,7 +37,7 @@ public class CommentApiIT {
         );
         assertThat(comments).isNotEmpty();
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void getComment() {
         Post post = postApi.createPost(createTestPost());
         Comment comment = commentsApi.createComment(post.getId(), createTestComment());
@@ -44,14 +45,14 @@ public class CommentApiIT {
         assertComment(comment, actual);
 
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void createComment() {
         Post post = postApi.createPost(createTestPost());
         Comment expected = createTestComment();
         Comment comment = commentsApi.createComment(post.getId(), expected);
         assertComment(expected, comment);
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void updateComment() {
         Post post = postApi.createPost(createTestPost());
         Comment comment = commentsApi.createComment(post.getId(), createTestComment());
@@ -61,7 +62,7 @@ public class CommentApiIT {
         Comment updated = commentsApi.updateComment(post.getId(),comment.getId(), updateComment);
         assertComment(comment, updateComment, updated);
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void removeComment() {
         Post post = postApi.createPost(createTestPost());
         Comment expected = commentsApi.createComment(post.getId(), createTestComment());
